@@ -1,0 +1,35 @@
+---
+interface Props {
+  title: string;
+  summary: string;
+  points?: string[];
+  href?: string;
+}
+
+const { title, summary, points = [], href } = Astro.props;
+---
+
+<div class="card card-hover p-6 flex flex-col gap-4 h-full">
+  <div class="w-10 h-10 rounded-lg bg-[var(--color-accent-soft)] flex items-center justify-center">
+    <span class="w-2.5 h-2.5 rounded-full bg-[var(--color-accent)]"></span>
+  </div>
+  <h3 class="text-lg font-bold tracking-tight">{title}</h3>
+  <p class="text-sm text-[var(--color-ink-muted)] leading-relaxed">{summary}</p>
+
+  {points.length > 0 && (
+    <ul class="flex flex-col gap-2 text-sm text-[var(--color-ink-muted)] mt-auto pt-2">
+      {points.map((point) => (
+        <li class="flex items-start gap-2">
+          <span class="text-[var(--color-accent)] mt-0.5">→</span>
+          <span>{point}</span>
+        </li>
+      ))}
+    </ul>
+  )}
+
+  {href && (
+    <a href={href} class="text-sm font-medium text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] mt-2">
+      Learn more →
+    </a>
+  )}
+</div>

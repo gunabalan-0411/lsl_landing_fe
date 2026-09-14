@@ -1,0 +1,123 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ServiceCard from "../components/ServiceCard.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import { services, projects, process, site } from "../data/site";
+
+const featuredProjects = projects.slice(0, 3);
+
+const capabilities = ["Web Development", "AI Systems", "Data Science", "Automation"];
+---
+
+<Layout>
+  <!-- Hero -->
+  <section class="relative overflow-hidden">
+    <div class="pointer-events-none absolute inset-0 -z-10">
+      <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[46rem] h-[46rem] rounded-full bg-[radial-gradient(closest-side,var(--color-accent-soft),transparent)]"></div>
+      <div class="absolute top-10 right-0 w-[26rem] h-[26rem] rounded-full bg-[radial-gradient(closest-side,#e6fbfb,transparent)]"></div>
+    </div>
+
+    <div class="container-page pt-24 md:pt-32 pb-20 flex flex-col items-center text-center">
+      <p class="eyebrow mb-6">Software · AI · Data</p>
+      <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight max-w-3xl leading-[1.08]">
+        {site.tagline}
+      </h1>
+      <p class="text-lg text-[var(--color-ink-muted)] max-w-xl mt-6 leading-relaxed">
+        {site.description}
+      </p>
+      <div class="flex flex-wrap justify-center gap-4 mt-10">
+        <a href="/contact" class="btn btn-primary">Start a project</a>
+        <a href="/work" class="btn btn-secondary">See our work</a>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 mt-16 pt-10 border-t border-[var(--color-border)] w-full max-w-2xl">
+        {capabilities.map((item) => (
+          <span class="text-sm font-semibold text-[var(--color-ink-faint)] tracking-wide uppercase">{item}</span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="section-alt py-20 border-t border-[var(--color-border)]">
+    <div class="container-page">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+        <div>
+          <p class="eyebrow mb-2">What we do</p>
+          <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight">Services built for real problems</h2>
+        </div>
+        <a href="/services" class="text-sm font-medium text-[var(--color-accent)] hover:text-[var(--color-accent-hover)]">
+          View all services →
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+        {services.map((service) => (
+          <ServiceCard title={service.title} summary={service.summary} points={service.points} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured work -->
+  <section class="py-20">
+    <div class="container-page">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+        <div>
+          <p class="eyebrow mb-2">Selected work</p>
+          <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight">Recent projects</h2>
+        </div>
+        <a href="/work" class="text-sm font-medium text-[var(--color-accent)] hover:text-[var(--color-accent-hover)]">
+          View all work →
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 max-w-xl mx-auto gap-6">
+        {featuredProjects.map((project) => (
+          <ProjectCard
+            title={project.title}
+            category={project.category}
+            summary={project.summary}
+            tags={project.tags}
+            status={project.status}
+            testimonial={project.testimonial}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="section-alt py-20 border-t border-[var(--color-border)]">
+    <div class="container-page">
+      <p class="eyebrow mb-2">How we work</p>
+      <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight mb-12">A straightforward process</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        {process.map((step) => (
+          <div class="relative pl-6 border-l-2 border-[var(--color-border)]">
+            <p class="font-mono text-[var(--color-accent)] text-sm mb-3">{step.step}</p>
+            <h3 class="font-bold mb-2">{step.title}</h3>
+            <p class="text-sm text-[var(--color-ink-muted)] leading-relaxed">{step.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20">
+    <div class="container-page">
+      <div class="panel-dark p-10 md:p-16 flex flex-col items-start gap-6 relative overflow-hidden">
+        <div class="pointer-events-none absolute -top-24 -right-24 w-72 h-72 rounded-full bg-[var(--color-accent)] opacity-30 blur-3xl"></div>
+        <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight max-w-xl relative">
+          Have a project in mind? Let's build it.
+        </h2>
+        <p class="text-white/70 max-w-md relative">
+          Whether it's a web app, an AI feature, or a data pipeline that needs automating — get in touch and we'll figure out the right approach.
+        </p>
+        <a href="/contact" class="btn btn-on-dark relative">Start a project</a>
+      </div>
+    </div>
+  </section>
+</Layout>

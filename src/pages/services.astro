@@ -1,0 +1,42 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ServiceCard from "../components/ServiceCard.astro";
+import { services } from "../data/site";
+---
+
+<Layout title="Services">
+  <section class="container-page pt-20 pb-16">
+    <p class="eyebrow mb-4">Services</p>
+    <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight max-w-2xl leading-[1.1]">
+      Engineering and intelligence, under one roof.
+    </h1>
+    <p class="text-lg text-[var(--color-ink-muted)] max-w-xl mt-6 leading-relaxed">
+      From shipping the product to making sense of the data it generates — we cover the full stack.
+    </p>
+  </section>
+
+  <section class="section-alt py-16 border-t border-[var(--color-border)]">
+    <div class="container-page">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {services.map((service) => (
+          <ServiceCard title={service.title} summary={service.summary} points={service.points} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20">
+    <div class="container-page">
+      <div class="panel-dark p-10 md:p-16 flex flex-col items-start gap-6 relative overflow-hidden">
+        <div class="pointer-events-none absolute -top-24 -right-24 w-72 h-72 rounded-full bg-[var(--color-accent)] opacity-30 blur-3xl"></div>
+        <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight max-w-xl relative">
+          Not sure which service fits?
+        </h2>
+        <p class="text-white/70 max-w-md relative">
+          Most projects touch more than one of these. Tell us what you're trying to solve and we'll scope it together.
+        </p>
+        <a href="/contact" class="btn btn-on-dark relative">Get in touch</a>
+      </div>
+    </div>
+  </section>
+</Layout>

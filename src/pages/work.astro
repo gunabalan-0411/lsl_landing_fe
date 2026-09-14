@@ -1,0 +1,49 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import { projects } from "../data/site";
+---
+
+<Layout title="Work">
+  <section class="container-page pt-20 pb-16">
+    <p class="eyebrow mb-4">Work</p>
+    <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight max-w-2xl leading-[1.1]">
+      Selected projects.
+    </h1>
+    <p class="text-lg text-[var(--color-ink-muted)] max-w-xl mt-6 leading-relaxed">
+      A sample of the kind of work we take on. Case studies below are placeholders — real project write-ups go here.
+    </p>
+  </section>
+
+  <section class="section-alt py-16 border-t border-[var(--color-border)]">
+    <div class="container-page">
+      <div class="grid grid-cols-1 max-w-xl mx-auto gap-6">
+        {projects.map((project) => (
+          <ProjectCard
+            title={project.title}
+            category={project.category}
+            summary={project.summary}
+            tags={project.tags}
+            status={project.status}
+            testimonial={project.testimonial}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20">
+    <div class="container-page">
+      <div class="panel-dark p-10 md:p-16 flex flex-col items-start gap-6 relative overflow-hidden">
+        <div class="pointer-events-none absolute -top-24 -right-24 w-72 h-72 rounded-full bg-[var(--color-accent)] opacity-30 blur-3xl"></div>
+        <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight max-w-xl relative">
+          Want to be the next case study?
+        </h2>
+        <p class="text-white/70 max-w-md relative">
+          Tell us about your project and we'll get back to you with next steps.
+        </p>
+        <a href="/contact" class="btn btn-on-dark relative">Start a project</a>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,46 @@
+---
+import { site } from "../data/site";
+
+const year = new Date().getFullYear();
+
+const links = [
+  { href: "/services", label: "Services" },
+  { href: "/work", label: "Work" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
+];
+---
+
+<footer class="section-alt border-t border-[var(--color-border)] mt-24">
+  <div class="container-page py-16 flex flex-col md:flex-row md:items-start justify-between gap-10">
+    <div class="max-w-sm">
+      <p class="font-extrabold tracking-tight text-lg flex items-center gap-2">
+        <span class="w-6 h-6 rounded-md bg-[var(--color-accent)] inline-block"></span>
+        {site.name}
+      </p>
+      <p class="text-sm text-[var(--color-ink-muted)] mt-3 leading-relaxed">{site.description}</p>
+    </div>
+
+    <div class="flex gap-16">
+      <div>
+        <p class="eyebrow mb-3">Site</p>
+        <ul class="flex flex-col gap-2 text-sm text-[var(--color-ink-muted)]">
+          {links.map((link) => (
+            <li><a href={link.href} class="hover:text-[var(--color-ink)] transition-colors">{link.label}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <p class="eyebrow mb-3">Contact</p>
+        <ul class="flex flex-col gap-2 text-sm text-[var(--color-ink-muted)]">
+          <li><a href={`mailto:${site.email}`} class="hover:text-[var(--color-ink)] transition-colors">{site.email}</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-page py-6 border-t border-[var(--color-border)] text-xs text-[var(--color-ink-faint)]">
+    © {year} {site.name}. All rights reserved.
+  </div>
+</footer>

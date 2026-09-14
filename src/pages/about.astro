@@ -1,0 +1,62 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { site } from "../data/site";
+
+const values = [
+  {
+    title: "Ship real things",
+    description: "We optimize for working software and working models, not decks and demos.",
+  },
+  {
+    title: "Show the reasoning",
+    description: "Every recommendation comes with the tradeoffs behind it, not just an opinion.",
+  },
+  {
+    title: "Right-sized solutions",
+    description: "The simplest system that solves the problem beats the impressive one that doesn't.",
+  },
+];
+---
+
+<Layout title="About">
+  <section class="container-page pt-20 pb-16">
+    <p class="eyebrow mb-4">About</p>
+    <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight max-w-2xl leading-[1.1]">
+      Built to work like a team, run like a studio.
+    </h1>
+    <p class="text-lg text-[var(--color-ink-muted)] max-w-2xl mt-6 leading-relaxed">
+      {site.name} is a software, AI, and data studio. We work across web development, AI systems, data
+      science, and automation — bringing the same rigor to a landing page as to a production ML pipeline.
+      This placeholder section is where your story goes: how you got started, what you specialize in, and
+      why clients work with you.
+    </p>
+  </section>
+
+  <section class="section-alt py-16 border-t border-[var(--color-border)]">
+    <div class="container-page">
+      <p class="eyebrow mb-2">Principles</p>
+      <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight mb-10">How we approach the work</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {values.map((value) => (
+          <div class="card p-6">
+            <h3 class="font-bold mb-2">{value.title}</h3>
+            <p class="text-sm text-[var(--color-ink-muted)] leading-relaxed">{value.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20">
+    <div class="container-page">
+      <div class="panel-dark p-10 md:p-16 flex flex-col items-start gap-6 relative overflow-hidden">
+        <div class="pointer-events-none absolute -top-24 -right-24 w-72 h-72 rounded-full bg-[var(--color-accent)] opacity-30 blur-3xl"></div>
+        <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight max-w-xl relative">
+          Let's talk about your project.
+        </h2>
+        <a href="/contact" class="btn btn-on-dark relative">Get in touch</a>
+      </div>
+    </div>
+  </section>
+</Layout>
