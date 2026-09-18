@@ -1,9 +1,9 @@
 export const site = {
-  name: "Cortexa",
+  name: "Lightspeed Lab",
   tagline: "Software & AI, engineered.",
   description:
-    "Cortexa builds web applications, AI systems, and data platforms for teams that need to move fast without breaking things.",
-  email: "hello@cortexa.dev",
+    "Lightspeed Lab builds web applications, AI systems, and data platforms for teams that need to move fast without breaking things.",
+  email: "hello@lightspeedlab.dev",
 };
 
 export const services = [
