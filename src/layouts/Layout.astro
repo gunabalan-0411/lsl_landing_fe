@@ -7,9 +7,11 @@ import { site } from "../data/site";
 interface Props {
   title?: string;
   description?: string;
+  /** Skip the shared Nav/Footer chrome for pages that provide their own (e.g. the landing page). */
+  bare?: boolean;
 }
 
-const { title, description = site.description } = Astro.props;
+const { title, description = site.description, bare = false } = Astro.props;
 const pageTitle = title ? `${title} — ${site.name}` : `${site.name} — ${site.tagline}`;
 ---
 
@@ -30,12 +32,27 @@ const pageTitle = title ? `${title} — ${site.name}` : `${site.name} — ${site
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
+    {bare && (
+      <script is:inline>
+        (function () {
+          var saved = localStorage.getItem("lsl-theme");
+          var theme = saved || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+          document.documentElement.setAttribute("data-theme", theme);
+        })();
+      </script>
+    )}
   </head>
   <body>
-    <Nav />
-    <main>
+    {bare ? (
       <slot />
-    </main>
-    <Footer />
+    ) : (
+      <>
+        <Nav />
+        <main>
+          <slot />
+        </main>
+        <Footer />
+      </>
+    )}
   </body>
 </html>
