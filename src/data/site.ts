@@ -87,6 +87,21 @@ export const services = [
   },
 ];
 
+export const demos = [
+  {
+    slug: "paco-ai",
+    title: "PACO AI",
+    description: "Ask PACO AI by voice, in English or Tamil — every answer follows your role, whether you are a parent, teacher or principal.",
+    youtubeId: "y4kyhvUHSbQ",
+  },
+  {
+    slug: "tickbook",
+    title: "TickBook",
+    description: "Type it, say it, or upload your handwritten pages. TickBook records every collection, matches UPI to your bank, and has the answers ready next morning.",
+    youtubeId: "Y3fTaktrOzk",
+  },
+];
+
 // Placeholder entries — replace with real case studies as they are ready.
 export const projects = [
   {

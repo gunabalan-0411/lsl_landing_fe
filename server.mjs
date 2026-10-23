@@ -41,6 +41,7 @@ const CSP = [
   "font-src 'self' https://fonts.gstatic.com https://cdn.fontshare.com",
   "img-src 'self' data:",
   "connect-src 'self'",
+  "frame-src https://www.youtube-nocookie.com",
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self' https://formspree.io",

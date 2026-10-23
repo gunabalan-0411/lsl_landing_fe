@@ -12,6 +12,10 @@ export default defineConfig({
   },
   integrations: [sitemap()],
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
+    build: {
+      // Keep page scripts as external files so the server's CSP (script-src 'self') allows them.
+      assetsInlineLimit: 0
+    }
   }
 });

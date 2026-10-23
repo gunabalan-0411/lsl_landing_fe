@@ -1,6 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { site, stack, services, projects, process, languages } from "../data/site";
+import { site, stack, services, demos, projects, process, languages } from "../data/site";
 ---
 
 <Layout bare>
@@ -16,6 +16,7 @@ import { site, stack, services, projects, process, languages } from "../data/sit
         <div style="flex:1"></div>
         <div style="display:flex;align-items:center;gap:22px">
           <a href="#services" data-hide-sm class="lsl-nav-link" style="font-size:13.5px;color:var(--cx-navmuted)">Services</a>
+          <a href="#demos" data-hide-sm class="lsl-nav-link" style="font-size:13.5px;color:var(--cx-navmuted)">Demos</a>
           <a href="#work" data-hide-sm class="lsl-nav-link" style="font-size:13.5px;color:var(--cx-navmuted)">Work</a>
           <a href="#process" data-hide-sm class="lsl-nav-link" style="font-size:13.5px;color:var(--cx-navmuted)">Process</a>
           <button id="theme-toggle" title="Toggle theme" class="lsl-theme-toggle" style="display:inline-flex;align-items:center;gap:7px;padding:7px 12px;border-radius:999px;border:1px solid var(--cx-navline);background:var(--cx-navchip);color:var(--cx-navink);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:background .2s ease">
@@ -105,6 +106,35 @@ import { site, stack, services, projects, process, languages } from "../data/sit
                 ))}
               </div>
               <span class="lsl-card-underline" style="position:absolute;left:0;right:0;bottom:0;height:2px;background:linear-gradient(90deg,var(--cx-accent),var(--cx-cyan));transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.2,.8,.2,1)"></span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="demos" style="background:var(--cx-bg);padding:100px 24px;border-top:1px solid var(--cx-border);transition:background .5s ease">
+      <div style="max-width:76rem;margin-inline:auto">
+        <div data-reveal>
+          <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--cx-accent-ink)">Live demos</span>
+          <h2 style="margin:12px 0 38px;font-size:clamp(28px,3.4vw,44px);line-height:1.08;letter-spacing:-.03em;font-weight:600;text-wrap:balance">See it in action</h2>
+        </div>
+
+        <div data-stack style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px">
+          {demos.map((d) => (
+            <div data-reveal style="background:var(--cx-card);border:1px solid var(--cx-border);border-radius:24px;padding:18px;display:flex;flex-direction:column;gap:18px">
+              <div class="al-video" data-video-id={d.youtubeId} data-video-title={d.title} style="position:relative;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:linear-gradient(135deg,#121D31,#0a121f)">
+                <button type="button" class="al-video-play" aria-label={`Play ${d.title} demo`} style="position:absolute;inset:0;width:100%;height:100%;border:0;cursor:pointer;display:grid;place-items:center;color:#fff;background:radial-gradient(circle at 30% 20%,rgba(79,177,143,.35),transparent 55%),radial-gradient(circle at 80% 90%,rgba(221,180,106,.25),transparent 50%),transparent">
+                  <span class="al-video-btn" style="display:grid;place-items:center;width:68px;height:68px;border-radius:50%;background:var(--cx-accent);box-shadow:0 14px 34px -10px var(--cx-accent-glow);transition:transform .2s ease">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
+                  </span>
+                  <span style="position:absolute;left:18px;bottom:14px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.8)">{d.title}</span>
+                </button>
+              </div>
+              <div style="padding:0 8px 6px;display:flex;flex-direction:column;gap:6px">
+                <h3 style="margin:0;font-size:21px;letter-spacing:-.02em;font-weight:600">{d.title}</h3>
+                <p style="margin:0;font-size:15px;line-height:1.6;color:var(--cx-muted)">{d.description}</p>
+                <a href={`https://youtu.be/${d.youtubeId}`} target="_blank" rel="noreferrer" class="al-yt-link" style="width:fit-content;margin-top:4px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:.06em;color:var(--cx-accent-ink)">Watch on YouTube ↗</a>
+              </div>
             </div>
           ))}
         </div>
@@ -254,6 +284,20 @@ import { site, stack, services, projects, process, languages } from "../data/sit
         });
       });
     }
+
+    document.querySelectorAll<HTMLElement>(".al-video").forEach((box) => {
+      const btn = box.querySelector<HTMLButtonElement>(".al-video-play");
+      btn?.addEventListener("click", () => {
+        const iframe = document.createElement("iframe");
+        iframe.src = `https://www.youtube-nocookie.com/embed/${box.dataset.videoId}?autoplay=1&rel=0&modestbranding=1`;
+        iframe.title = `${box.dataset.videoTitle} demo`;
+        iframe.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
+        iframe.allowFullscreen = true;
+        iframe.referrerPolicy = "strict-origin-when-cross-origin";
+        iframe.style.cssText = "position:absolute;inset:0;width:100%;height:100%;border:0";
+        box.replaceChildren(iframe);
+      });
+    });
 
     const toggle = document.getElementById("theme-toggle");
     if (toggle) {
@@ -483,6 +527,12 @@ import { site, stack, services, projects, process, languages } from "../data/sit
     }
     .lsl-service-card:hover .lsl-card-underline {
       transform: scaleX(1);
+    }
+    .al-video-play:hover .al-video-btn {
+      transform: scale(1.08);
+    }
+    .al-yt-link:hover {
+      text-decoration: underline;
     }
     .lsl-process-item:hover {
       border-color: var(--cx-accent);
