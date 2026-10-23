@@ -13,11 +13,8 @@ const current = Astro.url.pathname;
 
 <header class="sticky top-0 z-50 bg-white/85 backdrop-blur border-b border-[var(--color-border)]">
   <nav class="container-page flex items-center justify-between h-18 py-3">
-    <a href="/" class="font-extrabold tracking-tight text-lg flex items-center gap-2">
-      <span class="w-7 h-7 rounded-lg bg-[var(--color-accent)] flex items-center justify-center">
-        <span class="w-2.5 h-2.5 rounded-full border-2 border-white"></span>
-      </span>
-      {site.name}
+    <a href="/" aria-label={site.name} class="flex items-center">
+      <img src="/brand/logo-horizontal-light-bg.svg" alt={site.name} class="h-9 w-auto" />
     </a>
 
     <ul class="hidden md:flex items-center gap-1 text-sm font-medium">

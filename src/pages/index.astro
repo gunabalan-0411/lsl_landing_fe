@@ -1,9 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { site, stack, services, projects, process, languages } from "../data/site";
-
-const ggFin = projects.find((p) => p.slug === "gg-fin")!;
-const paco = projects.find((p) => p.slug === "paco")!;
 ---
 
 <Layout bare>
@@ -13,11 +10,8 @@ const paco = projects.find((p) => p.slug === "paco")!;
 
     <header style="position:sticky;top:0;z-index:50;background:var(--cx-navbg);backdrop-filter:blur(14px);border-bottom:1px solid var(--cx-navline)">
       <nav style="max-width:76rem;margin-inline:auto;padding:14px 24px;display:flex;align-items:center;gap:26px">
-        <a href="#top" style="display:flex;align-items:center;gap:10px;color:var(--cx-navink)">
-          <span style="display:grid;place-items:center;width:34px;height:30px;clip-path:polygon(28% 0%,100% 0%,72% 100%,0% 100%);background:linear-gradient(120deg,var(--cx-accent),var(--cx-cyan));filter:drop-shadow(0 6px 16px var(--cx-accent-glow))">
-            <svg width="18" viewBox="0 0 32 32" fill="none"><g stroke="#fff" stroke-width="1.6" stroke-linecap="round" opacity=".7"><path d="M4 11h5"></path><path d="M2.5 16h4.5"></path><path d="M25 21h4.5"></path><path d="M23 26h5"></path></g><path d="M19.6 3.6 10.2 17.2h5.4L13.2 28.4 23.2 14.2h-5.6z" fill="#fff"></path></svg>
-          </span>
-          <span style="font-weight:600;font-size:16.5px;letter-spacing:-.01em;white-space:nowrap">{site.name}</span>
+        <a href="#top" aria-label={site.name} style="display:flex;align-items:center">
+          <img src="/brand/logo-horizontal-dark-bg.svg" alt={site.name} style="height:36px;width:auto;display:block" />
         </a>
         <div style="flex:1"></div>
         <div style="display:flex;align-items:center;gap:22px">
@@ -36,20 +30,20 @@ const paco = projects.find((p) => p.slug === "paco")!;
       <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.055) 1px,transparent 1px);background-size:56px 56px;animation:cx-grid 7s linear infinite;mask-image:radial-gradient(120% 90% at 50% 0%,#000 25%,transparent 78%)"></div>
       <div style="position:absolute;top:-22%;left:4%;width:52vw;height:52vw;border-radius:50%;background:radial-gradient(circle,var(--cx-blob-a),transparent 62%);filter:blur(30px);animation:cx-drift 18s ease-in-out infinite"></div>
       <div style="position:absolute;bottom:-30%;right:-6%;width:44vw;height:44vw;border-radius:50%;background:radial-gradient(circle,var(--cx-blob-b),transparent 62%);filter:blur(30px);animation:cx-drift 24s ease-in-out infinite reverse"></div>
-      <div id="hero-spot" style="position:absolute;width:620px;height:620px;left:0;top:0;margin:-310px 0 0 -310px;border-radius:50%;background:radial-gradient(circle,rgba(120,126,255,.2),transparent 60%);pointer-events:none;opacity:0;transition:opacity .45s ease"></div>
+      <div id="hero-spot" style="position:absolute;width:620px;height:620px;left:0;top:0;margin:-310px 0 0 -310px;border-radius:50%;background:radial-gradient(circle,rgba(79,177,143,.2),transparent 60%);pointer-events:none;opacity:0;transition:opacity .45s ease"></div>
 
       <div style="position:relative;max-width:76rem;margin-inline:auto">
         <div data-stack style="display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr);gap:56px;align-items:center">
           <div>
-            <span data-reveal style="display:inline-flex;align-items:center;gap:9px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#a6a9ff;padding:7px 13px;border-radius:999px;border:1px solid rgba(166,169,255,.28);background:rgba(61,67,245,.14);white-space:nowrap">
-              <span style="width:6px;height:6px;border-radius:50%;background:#4c52ff;box-shadow:0 0 12px #4c52ff;animation:cx-pulse 2.4s ease-in-out infinite"></span>
+            <span data-reveal style="display:inline-flex;align-items:center;gap:9px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#75C291;padding:7px 13px;border-radius:999px;border:1px solid rgba(117,194,145,.3);background:rgba(79,177,143,.14);white-space:nowrap">
+              <span style="width:6px;height:6px;border-radius:50%;background:#4FB18F;box-shadow:0 0 12px #4FB18F;animation:cx-pulse 2.4s ease-in-out infinite"></span>
               Software &amp; AI studio
             </span>
             <h1 style="margin:22px 0 0;font-size:clamp(42px,5.6vw,78px);line-height:1;letter-spacing:-.035em;font-weight:600;text-wrap:balance">
-              <span data-reveal style="display:block">Software &amp; AI,</span>
+              <span data-reveal style="display:block">AI made simple</span>
               <span style="display:block;overflow:hidden">
-                <span style="display:inline-block;animation:cx-scan 1.1s .45s cubic-bezier(.65,0,.35,1) both;background:linear-gradient(94deg,#fff 12%,#a6a9ff 52%,#4fd8e0 92%);-webkit-background-clip:text;background-clip:text;color:transparent">engineered.</span>
-                <span style="display:inline-block;width:3px;height:.8em;margin-left:6px;vertical-align:-.04em;background:#4fd8e0;animation:cx-caret 1s steps(1) 1.6s infinite"></span>
+                <span style="display:inline-block;animation:cx-scan 1.1s .45s cubic-bezier(.65,0,.35,1) both;background:linear-gradient(94deg,#fff 12%,#75C291 52%,#DDB46A 92%);-webkit-background-clip:text;background-clip:text;color:transparent">for your business.</span>
+                <span style="display:inline-block;width:3px;height:.8em;margin-left:6px;vertical-align:-.04em;background:#DDB46A;animation:cx-caret 1s steps(1) 1.6s infinite"></span>
               </span>
             </h1>
             <p data-reveal style="margin:26px 0 0;max-width:34rem;font-size:18.5px;line-height:1.6;color:rgba(255,255,255,.68)">
@@ -65,7 +59,7 @@ const paco = projects.find((p) => p.slug === "paco")!;
           </div>
 
           <div data-reveal style="position:relative;aspect-ratio:1;display:grid;place-items:center">
-            <div style="position:absolute;inset:6%;border-radius:50%;background:radial-gradient(circle,rgba(61,67,245,.38),transparent 62%);filter:blur(34px);animation:cx-glowpulse 5s ease-in-out infinite"></div>
+            <div style="position:absolute;inset:6%;border-radius:50%;background:radial-gradient(circle,rgba(79,177,143,.38),transparent 62%);filter:blur(34px);animation:cx-glowpulse 5s ease-in-out infinite"></div>
             <thinking-orb state="composing" theme="dark" style="position:relative;width:84%;aspect-ratio:1"></thinking-orb>
           </div>
         </div>
@@ -78,7 +72,7 @@ const paco = projects.find((p) => p.slug === "paco")!;
           <div style="display:flex;gap:44px;padding-right:44px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.45);white-space:nowrap">
             {stack.map((item) => (
               <>
-                <span>{item}</span><span style="color:#4fd8e0">◆</span>
+                <span>{item}</span><span style="color:#DDB46A">◆</span>
               </>
             ))}
           </div>
@@ -121,72 +115,26 @@ const paco = projects.find((p) => p.slug === "paco")!;
       <div style="max-width:76rem;margin-inline:auto">
         <div data-reveal>
           <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--cx-accent-ink)">Selected work</span>
-          <h2 style="margin:12px 0 38px;font-size:clamp(28px,3.4vw,44px);line-height:1.08;letter-spacing:-.03em;font-weight:600;text-wrap:balance">Two platforms, built end to end</h2>
+          <h2 style="margin:12px 0 38px;font-size:clamp(28px,3.4vw,44px);line-height:1.08;letter-spacing:-.03em;font-weight:600;text-wrap:balance">Projects we&rsquo;ve shipped</h2>
         </div>
 
-        <div data-reveal data-stack style="display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:22px;align-items:stretch">
-          <div style="background:#0e1120;color:#fff;border-radius:24px;padding:36px;display:flex;flex-direction:column;gap:22px;position:relative;overflow:hidden">
-            <div style="position:absolute;top:-30%;right:-20%;width:60%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,var(--cx-blob-a),transparent 65%);filter:blur(22px);animation:cx-drift 20s ease-in-out infinite"></div>
-            <div style="position:relative;display:flex;flex-wrap:wrap;gap:10px">
-              <span style="padding:.35rem .8rem;border-radius:999px;background:rgba(255,255,255,.12);font-size:12px;color:#fff">{ggFin.category}</span>
-              <span style="display:inline-flex;align-items:center;gap:7px;padding:.35rem .8rem;border-radius:999px;background:rgba(79,216,224,.16);font-size:12px;color:#8ff0f6"><span style="width:6px;height:6px;border-radius:50%;background:#4fd8e0;animation:cx-pulse 2.6s ease-in-out infinite"></span>{ggFin.status}</span>
-            </div>
-            <p style="position:relative;margin:0;font-size:17px;line-height:1.65;color:rgba(255,255,255,.8);text-wrap:pretty">
-              {ggFin.summary}
-            </p>
-            <div style="position:relative;display:flex;flex-wrap:wrap;gap:8px;margin-top:auto">
-              {ggFin.tags.map((t) => (
-                <span style="padding:.4rem .85rem;border-radius:999px;border:1px solid rgba(255,255,255,.18);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;color:rgba(255,255,255,.75)">{t}</span>
-              ))}
-            </div>
-          </div>
-
-          <div style="background:var(--cx-card);border:1px solid var(--cx-border);border-radius:24px;padding:36px;display:flex;flex-direction:column">
-            <span style="font-size:52px;line-height:.6;color:var(--cx-accent-ink)">&ldquo;</span>
-            <p style="margin:18px 0 0;font-size:17.5px;line-height:1.7;color:var(--cx-ink);text-wrap:pretty">
-              {ggFin.testimonial!.quote}
-            </p>
-            <div style="display:flex;align-items:center;gap:12px;margin-top:auto;padding-top:26px">
-              <span style="width:40px;height:40px;border-radius:50%;background:linear-gradient(140deg,var(--cx-accent),var(--cx-cyan));display:grid;place-items:center;color:#fff;font-weight:600;font-size:14px">{ggFin.testimonial!.name[0]}</span>
-              <div>
-                <div style="font-size:14.5px;font-weight:600">{ggFin.testimonial!.name}</div>
-                <div style="font-size:13px;color:var(--cx-muted)">{ggFin.testimonial!.role}</div>
+        <div data-stack style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px">
+          {projects.map((project) => (
+            <div data-reveal style="background:var(--cx-card);border:1px solid var(--cx-border);border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:20px">
+              <div style="aspect-ratio:16/9;border-radius:16px;border:1px dashed var(--cx-border-hover);background:var(--cx-surface);display:grid;place-items:center;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--cx-faint)">Project preview</div>
+              <div style="display:flex;flex-wrap:wrap;gap:10px">
+                <span style="padding:.35rem .8rem;border-radius:999px;background:var(--cx-accent-soft);font-size:12px;color:var(--cx-accent-ink)">{project.category}</span>
+                <span style="display:inline-flex;align-items:center;gap:7px;padding:.35rem .8rem;border-radius:999px;background:var(--cx-surface);border:1px solid var(--cx-border);font-size:12px;color:var(--cx-muted)"><span style="width:6px;height:6px;border-radius:50%;background:var(--cx-cyan);animation:cx-pulse 2.6s ease-in-out infinite"></span>{project.status}</span>
+              </div>
+              <h3 style="margin:0;font-size:24px;line-height:1.15;letter-spacing:-.025em;font-weight:600">{project.title}</h3>
+              <p style="margin:0;font-size:16px;line-height:1.65;color:var(--cx-muted);text-wrap:pretty">{project.summary}</p>
+              <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:auto">
+                {project.tags.map((t) => (
+                  <span style="padding:.4rem .85rem;border-radius:999px;border:1px solid var(--cx-border);background:var(--cx-surface);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;color:var(--cx-muted)">{t}</span>
+                ))}
               </div>
             </div>
-          </div>
-        </div>
-
-        <div data-reveal data-stack style="display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:22px;align-items:stretch;margin-top:22px">
-          <div style="background:var(--cx-card);border:1px solid var(--cx-border);border-radius:24px;padding:36px;display:flex;flex-direction:column;gap:20px">
-            <div style="display:flex;flex-wrap:wrap;gap:10px">
-              <span style="padding:.35rem .8rem;border-radius:999px;background:var(--cx-accent-soft);font-size:12px;color:var(--cx-accent-ink)">{paco.category}</span>
-              <span style="display:inline-flex;align-items:center;gap:7px;padding:.35rem .8rem;border-radius:999px;background:var(--cx-surface);border:1px solid var(--cx-border);font-size:12px;color:var(--cx-muted)"><span style="width:6px;height:6px;border-radius:50%;background:#0a8f97;animation:cx-pulse 2.6s ease-in-out infinite"></span>{paco.status}</span>
-            </div>
-            <h3 style="margin:0;font-size:26px;line-height:1.15;letter-spacing:-.025em;font-weight:600">{paco.title}</h3>
-            <a href={paco.link} target="_blank" rel="noreferrer" class="lsl-paco-link" style="display:inline-flex;align-items:center;gap:7px;width:fit-content;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:.06em;color:var(--cx-accent-ink)">{paco.linkLabel} ↗</a>
-            {paco.summaryParagraphs!.map((para) => (
-              <p style="margin:0;font-size:16.5px;line-height:1.65;color:var(--cx-muted);text-wrap:pretty">{para}</p>
-            ))}
-            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:auto">
-              {paco.tags.map((t) => (
-                <span style="padding:.4rem .85rem;border-radius:999px;border:1px solid var(--cx-border);background:var(--cx-surface);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;color:var(--cx-muted)">{t}</span>
-              ))}
-            </div>
-          </div>
-
-          <div style="align-self:start;background:#0e1120;color:#fff;border-radius:24px;padding:36px;display:flex;flex-direction:column;gap:22px;position:relative;overflow:hidden">
-            <div style="position:absolute;bottom:-34%;left:-16%;width:60%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,var(--cx-blob-b),transparent 65%);filter:blur(22px);animation:cx-drift 22s ease-in-out infinite"></div>
-            <span style="position:relative;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#a6a9ff">Asked in the app</span>
-            <div style="position:relative;display:flex;flex-direction:column;gap:14px">
-              {paco.asks!.map((q) => (
-                <div style="display:flex;gap:12px;align-items:flex-start;padding:16px 18px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1)">
-                  <span style="flex:none;margin-top:2px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;color:#4fd8e0">{q.mode}</span>
-                  <span style="font-size:15.5px;line-height:1.5;color:rgba(255,255,255,.92)">{q.text}</span>
-                </div>
-              ))}
-            </div>
-            <p style="position:relative;margin:0;font-size:14px;line-height:1.6;color:rgba(255,255,255,.6)">Answers are scoped to the signed-in role — a parent sees their own child, a teacher their own class.</p>
-          </div>
+          ))}
         </div>
       </div>
     </section>
@@ -229,16 +177,20 @@ const paco = projects.find((p) => p.slug === "paco")!;
     </section>
 
     <section id="contact" style="background:var(--cx-bg);padding:0 24px 100px;transition:background .5s ease">
-      <div data-reveal style="max-width:76rem;margin-inline:auto;position:relative;overflow:hidden;border-radius:28px;background:#0e1120;color:#fff;padding:72px 44px">
+      <div data-reveal style="max-width:76rem;margin-inline:auto;position:relative;overflow:hidden;border-radius:28px;background:#121D31;color:#fff;padding:72px 44px">
         <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:44px 44px;animation:cx-grid 9s linear infinite;mask-image:radial-gradient(90% 90% at 50% 0%,#000,transparent 75%)"></div>
         <div style="position:absolute;bottom:-60%;left:30%;width:40%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,var(--cx-blob-a),transparent 62%);filter:blur(24px);animation:cx-drift 16s ease-in-out infinite"></div>
         <div style="position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:20px">
           <h2 style="margin:0;font-size:clamp(30px,4.2vw,56px);line-height:1.02;letter-spacing:-.035em;font-weight:600;max-width:32rem;text-wrap:balance">Have something that needs building?</h2>
           <p style="margin:0;max-width:30rem;font-size:17px;line-height:1.6;color:rgba(255,255,255,.7)">Tell us the problem and the constraints. We will come back with scope, architecture, and a timeline.</p>
           <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:6px">
-            <a href={`mailto:${site.email}`} class="lsl-contact-primary" style="position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:9px;padding:15px 28px;border-radius:999px;background:#fff;color:#0e1120;font-weight:600;font-size:15px;white-space:nowrap">{site.email}</a>
+            <a href={`mailto:${site.email}`} class="lsl-contact-primary" style="position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:9px;padding:15px 28px;border-radius:999px;background:#fff;color:#121D31;font-weight:600;font-size:15px;white-space:nowrap">{site.email}</a>
             <a href="#services" class="lsl-contact-secondary" style="display:inline-flex;align-items:center;gap:9px;padding:15px 28px;border-radius:999px;border:1px solid rgba(255,255,255,.24);color:#fff;font-weight:600;font-size:15px;white-space:nowrap">Browse services</a>
           </div>
+          <p style="margin:6px 0 0;font-size:14px;line-height:1.7;color:rgba(255,255,255,.6)">
+            <a href={`tel:${site.phone.replace(/\s/g, "")}`} style="color:rgba(255,255,255,.85)">{site.phone}</a><br />
+            {site.location}
+          </p>
         </div>
       </div>
     </section>
@@ -246,10 +198,8 @@ const paco = projects.find((p) => p.slug === "paco")!;
     <footer style="background:var(--cx-surface);border-top:1px solid var(--cx-border);padding:34px 24px;transition:background .5s ease">
       <div style="max-width:76rem;margin-inline:auto;display:flex;flex-wrap:wrap;align-items:center;gap:16px;justify-content:space-between">
         <div style="display:flex;align-items:center;gap:10px">
-          <span style="display:grid;place-items:center;width:30px;height:26px;clip-path:polygon(28% 0%,100% 0%,72% 100%,0% 100%);background:linear-gradient(120deg,var(--cx-accent),var(--cx-cyan))">
-            <svg width="15" viewBox="0 0 32 32" fill="none"><g stroke="#fff" stroke-width="1.8" stroke-linecap="round" opacity=".7"><path d="M4 11h5"></path><path d="M2.5 16h4.5"></path><path d="M25 21h4.5"></path><path d="M23 26h5"></path></g><path d="M19.6 3.6 10.2 17.2h5.4L13.2 28.4 23.2 14.2h-5.6z" fill="#fff"></path></svg>
-          </span>
-          <span style="font-size:14px;font-weight:600">{site.name}</span>
+          <img class="al-logo-on-light" src="/brand/logo-horizontal-light-bg.svg" alt={site.name} style="height:30px;width:auto" />
+          <img class="al-logo-on-dark" src="/brand/logo-horizontal-dark-bg.svg" alt={site.name} style="height:30px;width:auto" />
           <span style="font-size:14px;color:var(--cx-muted)">— {site.tagline}</span>
         </div>
         <div style="display:flex;gap:20px;font-size:13.5px;color:var(--cx-muted)">
@@ -327,53 +277,62 @@ const paco = projects.find((p) => p.slug === "paco")!;
   <style is:global>
     :root {
       --cx-bg: #ffffff;
-      --cx-surface: #f5f6fa;
+      --cx-surface: #f4f6f8;
       --cx-card: #ffffff;
-      --cx-border: #e4e6f0;
-      --cx-border-hover: #c9cdf0;
-      --cx-ink: #0e1120;
-      --cx-muted: #5b6072;
-      --cx-faint: #9298ab;
-      --cx-hero: #0b0d18;
-      --cx-shadow: rgba(15, 18, 40, 0.28);
-      --cx-accent-soft: #edeeff;
-      --cx-navbg: rgba(11, 13, 24, 0.74);
+      --cx-border: #e2e7ec;
+      --cx-border-hover: #bfdcd2;
+      --cx-ink: #121D31;
+      --cx-muted: #566178;
+      --cx-faint: #8d97aa;
+      --cx-hero: #121D31;
+      --cx-shadow: rgba(18, 29, 49, 0.28);
+      --cx-accent-soft: #e6f4ef;
+      --cx-navbg: rgba(18, 29, 49, 0.78);
       --cx-navline: rgba(255, 255, 255, 0.1);
       --cx-navink: #ffffff;
       --cx-navmuted: rgba(255, 255, 255, 0.66);
       --cx-navchip: rgba(255, 255, 255, 0.07);
       --cx-navchip-hover: rgba(255, 255, 255, 0.16);
       --cx-navcta: #ffffff;
-      --cx-navcta-ink: #0e1120;
-      --cx-navcta-hover: #edeeff;
-      --cx-accent: #3d43f5;
-      --cx-accent-ink: #3d43f5;
-      --cx-cyan: #0a8f97;
-      --cx-accent-glow: rgba(61, 67, 245, 0.9);
-      --cx-blob-a: rgba(61, 67, 245, 0.5);
-      --cx-blob-b: rgba(10, 143, 151, 0.42);
+      --cx-navcta-ink: #121D31;
+      --cx-navcta-hover: #e6f4ef;
+      --cx-accent: #23816f;
+      --cx-accent-ink: #1d7167;
+      --cx-cyan: #c99c57;
+      --cx-accent-glow: rgba(79, 177, 143, 0.8);
+      --cx-blob-a: rgba(79, 177, 143, 0.45);
+      --cx-blob-b: rgba(221, 180, 106, 0.32);
     }
 
     [data-theme="dark"] {
-      --cx-bg: #0b0d18;
-      --cx-surface: #0f1222;
-      --cx-card: #12152a;
+      --cx-bg: #0d1626;
+      --cx-surface: #111b2e;
+      --cx-card: #15213a;
       --cx-border: rgba(255, 255, 255, 0.12);
-      --cx-border-hover: rgba(166, 169, 255, 0.45);
-      --cx-ink: #f3f4ff;
-      --cx-muted: rgba(233, 235, 255, 0.72);
-      --cx-faint: rgba(233, 235, 255, 0.5);
-      --cx-hero: #08090f;
+      --cx-border-hover: rgba(117, 194, 145, 0.45);
+      --cx-ink: #f1f5fa;
+      --cx-muted: rgba(225, 233, 245, 0.72);
+      --cx-faint: rgba(225, 233, 245, 0.5);
+      --cx-hero: #0a121f;
       --cx-shadow: rgba(0, 0, 0, 0.6);
-      --cx-accent-soft: rgba(120, 126, 255, 0.18);
-      --cx-navbg: rgba(8, 9, 15, 0.8);
+      --cx-accent-soft: rgba(79, 177, 143, 0.18);
+      --cx-navbg: rgba(10, 18, 31, 0.82);
       --cx-navmuted: rgba(255, 255, 255, 0.6);
-      --cx-accent: #6b70ff;
-      --cx-accent-ink: #a9adff;
-      --cx-cyan: #4fd8e0;
-      --cx-accent-glow: rgba(107, 112, 255, 0.75);
-      --cx-blob-a: rgba(107, 112, 255, 0.42);
-      --cx-blob-b: rgba(79, 216, 224, 0.3);
+      --cx-accent-ink: #75c291;
+      --cx-cyan: #ddb46a;
+      --cx-accent-glow: rgba(79, 177, 143, 0.7);
+      --cx-blob-a: rgba(79, 177, 143, 0.36);
+      --cx-blob-b: rgba(221, 180, 106, 0.26);
+    }
+
+    .al-logo-on-dark {
+      display: none;
+    }
+    [data-theme="dark"] .al-logo-on-light {
+      display: none;
+    }
+    [data-theme="dark"] .al-logo-on-dark {
+      display: block;
     }
   </style>
 
@@ -525,9 +484,6 @@ const paco = projects.find((p) => p.slug === "paco")!;
     .lsl-service-card:hover .lsl-card-underline {
       transform: scaleX(1);
     }
-    .lsl-paco-link:hover {
-      text-decoration: underline;
-    }
     .lsl-process-item:hover {
       border-color: var(--cx-accent);
     }
@@ -537,7 +493,7 @@ const paco = projects.find((p) => p.slug === "paco")!;
     }
     .lsl-contact-primary:hover {
       transform: translateY(-2px);
-      background: #edeeff;
+      background: #e6f4ef;
     }
     .lsl-contact-secondary:hover {
       background: rgba(255, 255, 255, 0.08);

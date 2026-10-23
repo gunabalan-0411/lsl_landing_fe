@@ -1,9 +1,12 @@
 export const site = {
-  name: "Lightspeed Lab",
-  tagline: "Software & AI, engineered.",
+  name: "Alphinist Lab",
+  tagline: "AI made simple for your business.",
   description:
-    "Lightspeed Lab builds web applications, AI systems, and data platforms for teams that need to move fast without breaking things.",
-  email: "hello@lightspeedlab.in",
+    "Alphinist Lab builds AI voice assistants, smart integrations, and custom AI solutions that automate the work in your business.",
+  email: "contact@alphinistlab.com",
+  phone: "+91 88254 19713",
+  website: "www.alphinistlab.com",
+  location: "OMR, Sholinganallur, Chennai, Tamil Nadu",
 };
 
 export const stack = [
@@ -84,41 +87,25 @@ export const services = [
   },
 ];
 
+// Placeholder entries — replace with real case studies as they are ready.
 export const projects = [
   {
-    slug: "gg-fin",
-    title: "GG Fin — Ledger Modernization Platform",
-    category: "AI Development",
-    status: "Completed",
+    slug: "project-one",
+    title: "Project name",
+    category: "Category",
+    status: "Coming soon",
     summary:
-      "Took decades of handwritten paper ledgers to a full digital platform. A Gemini Vision OCR pipeline reads the old Tamil-handwritten pages — mixed scripts, numerals and inconsistent hands — and migrates them into structured records, voice replaces manual data entry, and collections, debts, and daily totals are tracked in real time.",
-    tags: ["FastAPI", "React", "PostgreSQL", "Gemini Vision OCR", "Whisper STT"],
-    testimonial: {
-      quote:
-        "For years we ran everything out of notebooks — collections, debts, daily totals, all handwritten in Tamil. Digitizing that felt impossible until I saw it actually reading our old ledgers and taking entries by voice. Now I get a clear picture of the business every single day instead of chasing numbers at month-end.",
-      name: "Ganapati",
-      role: "Founder & CEO, GG Fin",
-    },
+      "A short description of the problem, what we built, and the result. Replace this text with the real project story.",
+    tags: ["Tech", "Stack", "Goes here"],
   },
   {
-    slug: "paco",
-    title: "PACO — AI Assistant for School ERP",
-    category: "AI Development",
-    status: "In development",
-    link: "https://pacoschool.in/",
-    linkLabel: "pacoschool.in",
+    slug: "project-two",
+    title: "Project name",
+    category: "Category",
+    status: "Coming soon",
     summary:
-      "A conversational assistant built into an end-to-end school management ERP used by 50+ schools. Principals, teachers, parents and students ask questions in plain language — by text or voice, in Tamil, Telugu, Hindi, Kannada or English — and get a concise spoken or written answer instead of navigating modules, filters and reports. The AI layer handles intent, tool selection and multilingual phrasing; the existing Laravel backend stays the system of record, so authentication, permissions and business rules govern every answer. Built for low latency on older Android devices and reusable by the mobile app.",
-    summaryParagraphs: [
-      "A conversational assistant built into an end-to-end school management ERP used by 50+ schools. Principals, teachers, parents and students ask questions in plain language — by text or voice, in Tamil, Telugu, Hindi, Kannada or English — and get a concise spoken or written answer instead of navigating modules, filters and reports.",
-      "The AI layer handles intent, tool selection and multilingual phrasing; the existing Laravel backend stays the system of record, so authentication, permissions and business rules govern every answer. Built for low latency on older Android devices and reusable by the mobile app.",
-    ],
-    tags: ["Laravel", "PostgreSQL", "LLM agent + tools", "Speech to text", "Text to speech", "5 languages"],
-    asks: [
-      { mode: "VOICE", text: "இன்று எத்தனை ஆசிரியர்கள் விடுப்பில் இருக்கிறார்கள்?" },
-      { mode: "CHAT", text: "How much school fee is pending, and till which term?" },
-      { mode: "CHAT", text: "Which students scored below 40 in the last exam?" },
-    ],
+      "A short description of the problem, what we built, and the result. Replace this text with the real project story.",
+    tags: ["Tech", "Stack", "Goes here"],
   },
 ];
 
