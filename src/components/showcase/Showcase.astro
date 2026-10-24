@@ -14,9 +14,7 @@ const glyphs = encodeURIComponent([...new Set(tamil)].join(""));
 const tamilFonts = `https://fonts.googleapis.com/css2?family=Anek+Tamil:wght@500;600&family=Kavivanar&display=swap&text=${glyphs}`;
 ---
 
-<link rel="stylesheet" href={tamilFonts} />
-
-<section id="work" style="background:var(--cx-surface);padding:110px 24px;border-top:1px solid var(--cx-border);transition:background .5s ease">
+<section id="work" class="cv" data-fonts={tamilFonts} style="background:var(--cx-surface);padding:110px 24px;border-top:1px solid var(--cx-border);transition:background .5s ease;contain-intrinsic-size:auto 2700px">
   <div style="max-width:76rem;margin-inline:auto">
     <div data-reveal style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:52px">
       <div>
@@ -57,8 +55,3 @@ const tamilFonts = `https://fonts.googleapis.com/css2?family=Anek+Tamil:wght@500
     <p class="sc-note">Names, figures and dates in the previews are sample data.</p>
   </div>
 </section>
-
-<script>
-  import { initShowcase } from "../../scripts/showcase";
-  initShowcase();
-</script>

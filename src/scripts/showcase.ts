@@ -1,6 +1,6 @@
 // Choreography for the showcase cards. Each scene is a pure function of time (see motion.ts):
 // an intro that "grows" the card's interface in, then a seamless loop that tells one product moment.
-import { arc, bump, clamp, cls, ease, easeOut, env, inr, lerp, put, runScenes, seg, spring, text, type SceneFactory } from "./motion";
+import { arc, bump, clamp, cls, ease, easeOut, env, inr, lerp, put, seg, spring, text, type SceneFactory } from "./motion";
 
 const $ = (r: ParentNode, s: string) => r.querySelector<HTMLElement>(s);
 const $$ = (r: ParentNode, s: string) => [...r.querySelectorAll<HTMLElement>(s)];
@@ -679,21 +679,21 @@ const tbFilm: SceneFactory = (root) => {
   };
 };
 
-export function initShowcase() {
-  const scenes = runScenes({
-    "paco-ask": pacoAsk,
-    "paco-roles": pacoRoles,
-    "paco-lang": pacoLang,
-    "paco-rundown": pacoRundown,
-    "paco-film": pacoFilm,
-    "tb-page": tbPage,
-    "tb-voice": tbVoice,
-    "tb-upi": tbUpi,
-    "tb-answers": tbAnswers,
-    "tb-film": tbFilm,
-  });
+export const showcaseScenes: Record<string, SceneFactory> = {
+  "paco-ask": pacoAsk,
+  "paco-roles": pacoRoles,
+  "paco-lang": pacoLang,
+  "paco-rundown": pacoRundown,
+  "paco-film": pacoFilm,
+  "tb-page": tbPage,
+  "tb-voice": tbVoice,
+  "tb-upi": tbUpi,
+  "tb-answers": tbAnswers,
+  "tb-film": tbFilm,
+};
 
-  // The wide card in each group swaps its motion poster for the YouTube film when clicked.
+/** The wide card in each group swaps its motion poster for the YouTube film when clicked. */
+export function wireVideos(scenes: { stop(el: HTMLElement): void }) {
   document.querySelectorAll<HTMLElement>(".sc-video").forEach((card) => {
     const stage = card.querySelector<HTMLElement>(".sc-stage");
     const art = card.querySelector<HTMLElement>("[data-scene]");

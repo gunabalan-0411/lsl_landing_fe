@@ -1,0 +1,56 @@
+---
+// "What we do": a sticky stage plays the active practice's motion while the list scrolls past it.
+// On narrow screens each practice carries its own stage instead.
+import ServiceArt from "./ServiceArt.astro";
+import { services } from "../../data/site";
+
+const kinds: Record<string, string> = {
+  "web-development": "web",
+  "agentic-generative-ai": "ai",
+  "data-science-analysis": "ds",
+  "data-engineering": "de",
+  "ai-data-automation": "auto",
+};
+---
+
+<section id="services" class="sv cv" style="background:var(--cx-bg);padding:110px 24px 60px;transition:background .5s ease;contain-intrinsic-size:auto 3400px">
+  <div style="max-width:76rem;margin-inline:auto">
+    <div data-reveal style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:24px">
+      <div>
+        <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--cx-accent-ink)">What we do</span>
+        <h2 data-split style="margin:12px 0 0;font-size:clamp(32px,4.4vw,60px);line-height:1;letter-spacing:-.04em;font-weight:600;max-width:15ch;text-wrap:balance">From first sketch to software that runs itself</h2>
+      </div>
+      <p style="margin:0;max-width:25rem;font-size:15.5px;line-height:1.6;color:var(--cx-muted)">Five practices under one roof. Take one, or combine them; every engagement runs from discovery to post-launch support.</p>
+    </div>
+
+    <div class="sv-grid">
+      <div class="sv-panel">
+        <div class="sv-stage sv-dark">
+          {services.map((s, i) => (
+            <div class:list={["sv-layer", { "is-active": i === 0 }]} data-i={i}>
+              <ServiceArt kind={kinds[s.slug]} paused={i !== 0} />
+            </div>
+          ))}
+        </div>
+        <div class="sv-meter">
+          <span class="sv-count mono">01</span>
+          <span class="sv-of mono">/ 0{services.length}</span>
+          <i class="sv-bar"><b /></i>
+          <span class="sv-label">{services[0].title}</span>
+        </div>
+      </div>
+
+      <ol class="sv-list">
+        {services.map((s, i) => (
+          <li class:list={["sv-item", { "is-active": i === 0 }]} data-i={i} data-title={s.title}>
+            <div class="sv-inline sv-dark"><ServiceArt kind={kinds[s.slug]} /></div>
+            <span class="sv-num mono">{String(i + 1).padStart(2, "0")}</span>
+            <h3>{s.title}</h3>
+            <p>{s.summary}</p>
+            <ul>{s.points.map((p) => <li>{p}</li>)}</ul>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,46 @@
+---
+// Industries: a headline whose last word rotates through the industries, in step with the tile it names.
+import { industries } from "../data/site";
+
+const words = ["schools", "lenders", "retailers", "clinics", "field teams", "factories"];
+const icons: Record<string, string> = {
+  education: `<path pathLength="1" d="M2 9.5 12 4.5l10 5-10 5z"/><path pathLength="1" d="M6 11.5v4.8c0 1.5 2.7 3 6 3s6-1.5 6-3v-4.8"/><path pathLength="1" d="M22 9.5v5.5"/>`,
+  lending: `<path pathLength="1" d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path pathLength="1" d="M8.6 12.8l2.2 2.2 4.4-4.8"/>`,
+  retail: `<path pathLength="1" d="M5 8h14l-1.2 12H6.2z"/><path pathLength="1" d="M9 8V6.6a3 3 0 0 1 6 0V8"/>`,
+  healthcare: `<path pathLength="1" d="M12 20s-7.5-4.6-7.5-10.2A4.1 4.1 0 0 1 12 7.4a4.1 4.1 0 0 1 7.5 2.4C19.5 15.4 12 20 12 20z"/><path pathLength="1" d="M7.8 12h2.4l1.3-2.2 1.7 4.2 1.2-2H16"/>`,
+  logistics: `<path pathLength="1" d="M2.5 6.5h11.5v9.5H2.5z"/><path pathLength="1" d="M14 9.5h4.2l3.3 3.4V16H14"/><circle pathLength="1" cx="6.6" cy="17.6" r="1.9"/><circle pathLength="1" cx="17.6" cy="17.6" r="1.9"/>`,
+  manufacturing: `<path pathLength="1" d="M3 20V10.5l5 3v-3l5 3V7l8 4v9z"/><path pathLength="1" d="M7 16.5h2M12 16.5h2M17 16.5h2"/>`,
+};
+---
+
+<section id="industries" class="cv" style="background:var(--cx-surface);padding:110px 24px;border-top:1px solid var(--cx-border);transition:background .5s ease;contain-intrinsic-size:auto 1050px">
+  <div style="max-width:76rem;margin-inline:auto">
+    <div data-reveal style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px">
+      <div>
+        <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--cx-accent-ink)">Industries</span>
+        <h2 style="margin:12px 0 0;font-size:clamp(32px,4.4vw,60px);line-height:1.02;letter-spacing:-.04em;font-weight:600">
+          We build for<br />
+          <span class="sr-only">{words.join(", ")}.</span>
+          <span class="ind-rot" data-rotator aria-hidden="true">
+            {words.map((w, i) => <span class:list={{ "is-on": i === 0 }}>{w}.</span>)}
+          </span>
+        </h2>
+      </div>
+      <p style="margin:0;max-width:25rem;font-size:15.5px;line-height:1.6;color:var(--cx-muted)">Different businesses, the same goal: less manual work and faster answers. Two of these already run on software we shipped.</p>
+    </div>
+
+    <div class="ind-grid" data-rotator-target>
+      {industries.map((ind, i) => (
+        <article class="ind-tile" data-reveal data-spot data-i={i}>
+          <div class="ind-top">
+            <span class="ind-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" set:html={icons[ind.slug]} /></span>
+            {ind.shipped && <a class="ind-badge" href="#work"><i />Shipped · {ind.shipped}</a>}
+          </div>
+          <h3>{ind.name}</h3>
+          <p>{ind.line}</p>
+          <ul>{ind.uses.map((u) => <li>{u}</li>)}</ul>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

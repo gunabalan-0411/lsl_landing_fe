@@ -87,6 +87,72 @@ export const services = [
   },
 ];
 
+// Industries we build for. `shipped` marks the ones backed by a delivered product in the showcase.
+export const industries = [
+  {
+    slug: "education",
+    name: "Education",
+    line: "Voice assistants that give parents, teachers and principals instant answers.",
+    uses: ["School ERP", "Fees & attendance", "Parent updates"],
+    shipped: "PACO AI",
+  },
+  {
+    slug: "lending",
+    name: "Lending & finance",
+    line: "Collections apps that read handwritten ledgers and match UPI to the bank.",
+    uses: ["Daily collections", "Ledger digitisation", "UPI matching"],
+    shipped: "TickBook",
+  },
+  {
+    slug: "retail",
+    name: "Retail & distribution",
+    line: "Orders, stock and sales in one place, with forecasts you can act on.",
+    uses: ["Inventory dashboards", "Demand forecasts", "Order assistants"],
+  },
+  {
+    slug: "healthcare",
+    name: "Healthcare & clinics",
+    line: "Appointment assistants, digitised records and reminders in the patient's language.",
+    uses: ["Appointments", "Record digitisation", "Reminders"],
+  },
+  {
+    slug: "logistics",
+    name: "Logistics & field teams",
+    line: "Voice entry for staff on the move, and daily reports that write themselves.",
+    uses: ["Field data entry", "Tracking", "Daily reports"],
+  },
+  {
+    slug: "manufacturing",
+    name: "Manufacturing",
+    line: "Production and quality data piped into live dashboards and alerts.",
+    uses: ["Production dashboards", "Quality data", "Alerts"],
+  },
+];
+
+// The technology stack, top layer (what people touch) to bottom layer (where data lives).
+export const techLayers = [
+  {
+    name: "Interfaces",
+    line: "Where people meet the software: web, mobile, voice and chat.",
+    tech: ["React", "Astro", "Tailwind", "Voice UI", "Chat UI"],
+  },
+  {
+    name: "Intelligence",
+    line: "Models that listen, read, reason and act, wired to your rules.",
+    tech: ["LLM agents + tools", "RAG", "Whisper STT", "Neural TTS", "Gemini Vision OCR"],
+  },
+  {
+    name: "Applications & APIs",
+    line: "The backend that runs your business logic and talks to your systems.",
+    tech: ["FastAPI", "Laravel", "REST APIs", "Roles & permissions", "Integrations"],
+  },
+  {
+    name: "Data",
+    line: "Pipelines and stores that keep every number correct as you grow.",
+    tech: ["PostgreSQL", "ETL / ELT", "Warehouses", "Dashboards"],
+  },
+];
+
 // The two products in the "Selected work" showcase. Every name and figure in their motion cards is sample data.
 export const projects = [
   {
@@ -107,14 +173,6 @@ export const projects = [
     tags: ["Handwritten Tamil", "Voice entry", "UPI matching", "Daily & interest loans"],
     youtubeId: "Y3fTaktrOzk",
   },
-];
-
-export const languages = [
-  { native: "தமிழ்", name: "Tamil" },
-  { native: "తెలుగు", name: "Telugu" },
-  { native: "हिन्दी", name: "Hindi" },
-  { native: "ಕನ್ನಡ", name: "Kannada" },
-  { native: "English", name: "English" },
 ];
 
 export const process = [

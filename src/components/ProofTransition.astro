@@ -1,0 +1,31 @@
+---
+// The hand-off into the showcase: a pinned, scroll-scrubbed title that tells the viewer real demos follow.
+// src/scripts/proof.ts maps scroll progress (0 -> 1) onto every element, so scrolling back plays it in reverse.
+const line1 = "Don't take our word for it.".split(" ");
+const pacoMark = `<svg viewBox="0 0 120 120"><rect x="10" y="10" width="100" height="58" rx="29" fill="#0288D1"/><rect x="10" y="10" width="30" height="100" rx="15" fill="#01579B"/><rect x="52" y="31" width="8" height="16" rx="4" fill="#fff"/><rect x="66" y="22" width="8" height="34" rx="4" fill="#fff"/><rect x="80" y="27" width="8" height="24" rx="4" fill="#fff"/></svg>`;
+const tbMark = `<svg viewBox="0 0 120 120" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="12" y="12" width="96" height="96" rx="22" fill="#3d8a66"/><path d="M32 38 H88" stroke="#f1f5f0" stroke-width="7" opacity="0.5"/><path d="M32 58 H88" stroke="#f1f5f0" stroke-width="7" opacity="0.5"/><path d="M30 80 L40 90 L58 71" stroke="#f1f5f0" stroke-width="8"/><path d="M68 81 H88" stroke="#f1f5f0" stroke-width="7" opacity="0.5"/></svg>`;
+---
+
+<section class="pr cv" id="proof" data-proof aria-labelledby="proof-title" style="contain-intrinsic-size:auto 260vh">
+  <div class="pr-pin">
+    <div class="pr-grid" />
+    <div class="pr-glow" />
+    <div class="pr-float pr-f1"><small>Due 15 Oct · Aarav</small><b>Rs 12,500</b></div>
+    <div class="pr-float pr-f2"><small>Murugan · outstanding</small><b>₹8,500</b></div>
+    <div class="pr-float pr-f3"><small>Class 6B</small><b>2 absent today</b></div>
+    <div class="pr-float pr-f4"><small>Ravi · ₹500</small><b>UPI matched ✓</b></div>
+
+    <div class="pr-inner">
+      <span class="pr-eye mono">Delivered work · Live demos</span>
+      <h2 id="proof-title" class="pr-l1">{line1.map((w) => <span>{w}</span>)}</h2>
+      <p class="pr-l2"><span>Watch it work.</span></p>
+      <div class="pr-prods">
+        <a href="#work" class="pr-prod"><span set:html={pacoMark} />PACO AI</a>
+        <a href="#work" class="pr-prod"><span set:html={tbMark} />TickBook</a>
+        <span class="pr-prod is-films"><i>▶</i>2 films · 10 live previews</span>
+      </div>
+      <p class="pr-sub">Two products we designed, built and shipped. Each comes with live previews of what it does and its full film.</p>
+      <span class="pr-cue mono">Scroll to the demos <i>↓</i></span>
+    </div>
+  </div>
+</section>

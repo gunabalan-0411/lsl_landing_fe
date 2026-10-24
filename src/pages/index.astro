@@ -1,22 +1,28 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Showcase from "../components/showcase/Showcase.astro";
-import { site, stack, services, process, languages } from "../data/site";
+import Services from "../components/services/Services.astro";
+import Industries from "../components/Industries.astro";
+import TechStack from "../components/TechStack.astro";
+import ProofTransition from "../components/ProofTransition.astro";
+import { site, stack, process } from "../data/site";
+import "../styles/fonts.css";
+import "../styles/sections.css";
 ---
 
 <Layout bare>
-  <script is:inline src="/thinking-orb.js" defer></script>
-
-  <div class="lsl-landing" style="background:var(--cx-bg);color:var(--cx-ink);overflow-x:hidden;transition:background .5s ease,color .5s ease">
+  <div class="lsl-landing" style="background:var(--cx-bg);color:var(--cx-ink);overflow-x:clip;transition:background .5s ease,color .5s ease">
 
     <header data-nav class="lsl-nav" style="position:sticky;top:0;z-index:50;background:var(--cx-navbg);backdrop-filter:blur(14px);border-bottom:1px solid var(--cx-navline)">
       <nav style="max-width:76rem;margin-inline:auto;padding:14px 24px;display:flex;align-items:center;gap:26px">
         <a href="#top" aria-label={site.name} style="display:flex;align-items:center">
-          <img src="/brand/logo-horizontal-dark-bg.svg" alt={site.name} style="height:36px;width:auto;display:block" />
+          <img class="al-logo-on-light" src="/brand/logo-horizontal-light-bg.svg" alt={site.name} style="height:36px;width:auto" />
+          <img class="al-logo-on-dark" src="/brand/logo-horizontal-dark-bg.svg" alt={site.name} style="height:36px;width:auto" />
         </a>
         <div style="flex:1"></div>
         <div style="display:flex;align-items:center;gap:22px">
           <a href="#services" data-hide-sm class="lsl-nav-link" style="font-size:13.5px;color:var(--cx-navmuted)">Services</a>
+          <a href="#industries" data-hide-sm class="lsl-nav-link" style="font-size:13.5px;color:var(--cx-navmuted)">Industries</a>
           <a href="#work" data-hide-sm class="lsl-nav-link" style="font-size:13.5px;color:var(--cx-navmuted)">Work</a>
           <a href="#process" data-hide-sm class="lsl-nav-link" style="font-size:13.5px;color:var(--cx-navmuted)">Process</a>
           <button id="theme-toggle" title="Toggle theme" class="lsl-theme-toggle" style="display:inline-flex;align-items:center;gap:7px;padding:7px 12px;border-radius:999px;border:1px solid var(--cx-navline);background:var(--cx-navchip);color:var(--cx-navink);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:background .2s ease">
@@ -27,53 +33,54 @@ import { site, stack, services, process, languages } from "../data/site";
       </nav>
     </header>
 
-    <section id="top" style="position:relative;background:var(--cx-hero);color:#fff;overflow:hidden;padding:100px 24px 112px;transition:background .5s ease">
-      <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.055) 1px,transparent 1px);background-size:56px 56px;animation:cx-grid 7s linear infinite;mask-image:radial-gradient(120% 90% at 50% 0%,#000 25%,transparent 78%)"></div>
-      <div style="position:absolute;top:-22%;left:4%;width:52vw;height:52vw;border-radius:50%;background:radial-gradient(circle,var(--cx-blob-a),transparent 62%);filter:blur(30px);animation:cx-drift 18s ease-in-out infinite"></div>
-      <div style="position:absolute;bottom:-30%;right:-6%;width:44vw;height:44vw;border-radius:50%;background:radial-gradient(circle,var(--cx-blob-b),transparent 62%);filter:blur(30px);animation:cx-drift 24s ease-in-out infinite reverse"></div>
+    <section id="top" data-pause style="position:relative;background:var(--cx-hero);color:var(--cx-hero-ink);overflow:hidden;padding:100px 24px 112px;transition:background .5s ease,color .5s ease">
+      <div class="lsl-grain"></div>
+      <div style="position:absolute;inset:0;background-image:linear-gradient(var(--cx-hero-line) 1px,transparent 1px),linear-gradient(90deg,var(--cx-hero-line) 1px,transparent 1px);background-size:56px 56px;animation:cx-grid 7s linear infinite;will-change:transform;mask-image:radial-gradient(120% 90% at 50% 0%,#000 25%,transparent 78%)"></div>
+      <div style="position:absolute;top:-22%;left:4%;width:52vw;height:52vw;border-radius:50%;background:radial-gradient(circle,var(--cx-blob-a),transparent 66%);animation:cx-drift 18s ease-in-out infinite;will-change:transform"></div>
+      <div style="position:absolute;bottom:-30%;right:-6%;width:44vw;height:44vw;border-radius:50%;background:radial-gradient(circle,var(--cx-blob-b),transparent 66%);animation:cx-drift 24s ease-in-out infinite reverse;will-change:transform"></div>
       <div id="hero-spot" style="position:absolute;width:620px;height:620px;left:0;top:0;margin:-310px 0 0 -310px;border-radius:50%;background:radial-gradient(circle,rgba(79,177,143,.2),transparent 60%);pointer-events:none;opacity:0;transition:opacity .45s ease"></div>
 
       <div style="position:relative;max-width:76rem;margin-inline:auto">
         <div data-stack style="display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr);gap:56px;align-items:center">
           <div>
-            <span data-reveal style="display:inline-flex;align-items:center;gap:9px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#75C291;padding:7px 13px;border-radius:999px;border:1px solid rgba(117,194,145,.3);background:rgba(79,177,143,.14);white-space:nowrap">
+            <span class="hero-in" style="--d:0ms;display:inline-flex;align-items:center;gap:9px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--cx-hero-chip-ink);padding:7px 13px;border-radius:999px;border:1px solid var(--cx-hero-chip-line);background:var(--cx-hero-chip-bg);white-space:nowrap">
               <span style="width:6px;height:6px;border-radius:50%;background:#4FB18F;box-shadow:0 0 12px #4FB18F;animation:cx-pulse 2.4s ease-in-out infinite"></span>
               Software &amp; AI studio
             </span>
             <h1 style="margin:22px 0 0;font-size:clamp(42px,5.6vw,78px);line-height:1;letter-spacing:-.035em;font-weight:600;text-wrap:balance">
-              <span data-split style="display:block">AI made simple</span>
+              <span style="display:block"><span class="hero-word" style="--i:0">AI</span> <span class="hero-word" style="--i:1">made</span> <span class="hero-word" style="--i:2">simple</span></span>
               <span style="display:block;overflow:hidden">
-                <span style="display:inline-block;animation:cx-scan 1.1s .45s cubic-bezier(.65,0,.35,1) both;background:linear-gradient(94deg,#fff 12%,#75C291 52%,#DDB46A 92%);-webkit-background-clip:text;background-clip:text;color:transparent">for your business.</span>
-                <span style="display:inline-block;width:3px;height:.8em;margin-left:6px;vertical-align:-.04em;background:#DDB46A;animation:cx-caret 1s steps(1) 1.6s infinite"></span>
+                <span style="display:inline-block;animation:cx-scan 1.1s .45s cubic-bezier(.65,0,.35,1) both;background:var(--cx-hero-grad);-webkit-background-clip:text;background-clip:text;color:transparent">for your business.</span>
+                <span style="display:inline-block;width:3px;height:.8em;margin-left:6px;vertical-align:-.04em;background:var(--cx-hero-caret);animation:cx-caret 1s steps(1) 1.6s infinite"></span>
               </span>
             </h1>
-            <p data-reveal style="margin:26px 0 0;max-width:34rem;font-size:18.5px;line-height:1.6;color:rgba(255,255,255,.68)">
+            <p class="hero-in" style="--d:420ms;margin:26px 0 0;max-width:34rem;font-size:18.5px;line-height:1.6;color:var(--cx-hero-muted)">
               {site.description}
             </p>
-            <div data-reveal style="display:flex;flex-wrap:wrap;gap:12px;margin-top:34px">
+            <div class="hero-in" style="--d:560ms;display:flex;flex-wrap:wrap;gap:12px;margin-top:34px">
               <a href="#contact" data-magnetic class="lsl-hero-cta-primary" style="position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:9px;padding:14px 26px;border-radius:999px;background:var(--cx-accent);color:#fff;font-weight:600;font-size:14.5px;white-space:nowrap;box-shadow:0 14px 34px -14px var(--cx-accent-glow)">
                 Start a project
                 <span style="position:absolute;top:0;bottom:0;left:0;width:34%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.32),transparent);animation:cx-sheen 3.4s ease-in-out infinite"></span>
               </a>
-              <a href="#work" data-magnetic class="lsl-hero-cta-secondary" style="display:inline-flex;align-items:center;gap:9px;padding:14px 26px;border-radius:999px;border:1px solid rgba(255,255,255,.22);color:#fff;font-weight:600;font-size:14.5px;white-space:nowrap">See the work →</a>
+              <a href="#work" data-magnetic class="lsl-hero-cta-secondary" style="display:inline-flex;align-items:center;gap:9px;padding:14px 26px;border-radius:999px;border:1px solid var(--cx-hero-ghost-line);color:var(--cx-hero-ink);font-weight:600;font-size:14.5px;white-space:nowrap">See the work →</a>
             </div>
           </div>
 
-          <div data-reveal style="position:relative;aspect-ratio:1;display:grid;place-items:center">
-            <div style="position:absolute;inset:6%;border-radius:50%;background:radial-gradient(circle,rgba(79,177,143,.38),transparent 62%);filter:blur(34px);animation:cx-glowpulse 5s ease-in-out infinite"></div>
-            <thinking-orb state="composing" theme="dark" style="position:relative;width:84%;aspect-ratio:1"></thinking-orb>
+          <div class="hero-in" style="--d:300ms;position:relative;aspect-ratio:1;display:grid;place-items:center">
+            <div style="position:absolute;inset:6%;border-radius:50%;background:radial-gradient(circle,rgba(79,177,143,.34),transparent 66%);animation:cx-glowpulse 5s ease-in-out infinite;will-change:transform,opacity"></div>
+            <thinking-orb state="composing" style="position:relative;width:84%;aspect-ratio:1"></thinking-orb>
           </div>
         </div>
       </div>
     </section>
 
-    <div style="background:var(--cx-hero);border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);padding:15px 0;overflow:hidden">
-      <div style="display:flex;width:max-content;animation:cx-marquee 30s linear infinite">
+    <div data-pause style="background:var(--cx-hero);border-top:1px solid var(--cx-hero-line2);border-bottom:1px solid var(--cx-hero-line2);padding:15px 0;overflow:hidden;transition:background .5s ease">
+      <div style="display:flex;width:max-content;animation:cx-marquee 30s linear infinite;will-change:transform">
         {[0, 1].map(() => (
-          <div style="display:flex;gap:44px;padding-right:44px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.45);white-space:nowrap">
+          <div style="display:flex;gap:44px;padding-right:44px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--cx-marquee-ink);white-space:nowrap">
             {stack.map((item) => (
               <>
-                <span>{item}</span><span style="color:#DDB46A">◆</span>
+                <span>{item}</span><span style="color:var(--cx-hero-caret)">◆</span>
               </>
             ))}
           </div>
@@ -81,40 +88,17 @@ import { site, stack, services, process, languages } from "../data/site";
       </div>
     </div>
 
-    <section id="services" style="background:var(--cx-bg);padding:100px 24px;transition:background .5s ease">
-      <div style="max-width:76rem;margin-inline:auto">
-        <div data-reveal style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:44px">
-          <div>
-            <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--cx-accent-ink)">What we do</span>
-            <h2 data-split style="margin:12px 0 0;font-size:clamp(29px,3.6vw,46px);line-height:1.05;letter-spacing:-.03em;font-weight:600">Five practices, one team</h2>
-          </div>
-          <p style="margin:0;max-width:26rem;font-size:15.5px;line-height:1.6;color:var(--cx-muted)">Engagements run end to end — discovery through post-launch support. Take one practice or combine them.</p>
-        </div>
+    <Services />
 
-        <div data-stack style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px">
-          {services.map((s, i) => (
-            <div data-reveal data-tilt class="lsl-service-card" style="position:relative;overflow:hidden;background:var(--cx-card);border:1px solid var(--cx-border);border-radius:20px;padding:30px;box-shadow:0 1px 2px rgba(15,18,40,.04);transition:box-shadow .3s ease,border-color .3s ease,transform .2s ease">
-              <div style="display:flex;align-items:center;justify-content:space-between;gap:14px">
-                <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:.1em;color:var(--cx-faint)">{String(i + 1).padStart(2, "0")}</span>
-                <span style="width:34px;height:34px;border-radius:11px;display:grid;place-items:center;background:var(--cx-accent-soft);color:var(--cx-accent-ink);font-size:15px">↗</span>
-              </div>
-              <h3 style="margin:18px 0 0;font-size:23px;letter-spacing:-.02em;font-weight:600">{s.title}</h3>
-              <p style="margin:10px 0 0;font-size:15px;line-height:1.6;color:var(--cx-muted)">{s.summary}</p>
-              <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:20px">
-                {s.points.map((p) => (
-                  <span style="display:inline-flex;align-items:center;padding:.4rem .9rem;border-radius:999px;background:var(--cx-surface);border:1px solid var(--cx-border);font-size:12.5px;color:var(--cx-muted)">{p}</span>
-                ))}
-              </div>
-              <span class="lsl-card-underline" style="position:absolute;left:0;right:0;bottom:0;height:2px;background:linear-gradient(90deg,var(--cx-accent),var(--cx-cyan));transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.2,.8,.2,1)"></span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+    <Industries />
+
+    <TechStack />
+
+    <ProofTransition />
 
     <Showcase />
 
-    <section id="process" style="background:var(--cx-bg);padding:100px 24px;transition:background .5s ease">
+    <section id="process" class="cv" style="background:var(--cx-bg);padding:100px 24px;transition:background .5s ease;contain-intrinsic-size:auto 520px">
       <div style="max-width:76rem;margin-inline:auto">
         <div data-reveal>
           <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--cx-accent-ink)">How it goes</span>
@@ -133,44 +117,26 @@ import { site, stack, services, process, languages } from "../data/site";
       </div>
     </section>
 
-    <section style="background:var(--cx-surface);border-top:1px solid var(--cx-border);border-bottom:1px solid var(--cx-border);padding:64px 24px;margin-bottom:100px;transition:background .5s ease">
-      <div data-reveal data-stack style="max-width:76rem;margin-inline:auto;display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:36px;align-items:center">
-        <div>
-          <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--cx-accent-ink)">Multilingual by default</span>
-          <h2 data-split style="margin:12px 0 0;font-size:clamp(24px,2.6vw,34px);line-height:1.15;letter-spacing:-.025em;font-weight:600;text-wrap:balance">Your users ask in their own language</h2>
-          <p style="margin:12px 0 0;font-size:15.5px;line-height:1.6;color:var(--cx-muted)">Speech in, speech out, and handwriting recognition for records that were never typed in the first place.</p>
-        </div>
-        <div style="display:flex;flex-wrap:wrap;gap:12px">
-          {languages.map((l) => (
-            <div class="lsl-lang-card" style="flex:1 1 9rem;padding:20px;border-radius:16px;background:var(--cx-card);border:1px solid var(--cx-border);transition:border-color .3s ease,transform .2s ease">
-              <div style="font-size:24px;letter-spacing:-.01em;font-weight:600">{l.native}</div>
-              <div style="margin-top:6px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--cx-faint)">{l.name}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" style="background:var(--cx-bg);padding:0 24px 100px;transition:background .5s ease">
-      <div data-reveal style="max-width:76rem;margin-inline:auto;position:relative;overflow:hidden;border-radius:28px;background:#121D31;color:#fff;padding:72px 44px">
-        <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:44px 44px;animation:cx-grid 9s linear infinite;mask-image:radial-gradient(90% 90% at 50% 0%,#000,transparent 75%)"></div>
-        <div style="position:absolute;bottom:-60%;left:30%;width:40%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,var(--cx-blob-a),transparent 62%);filter:blur(24px);animation:cx-drift 16s ease-in-out infinite"></div>
+    <section id="contact" class="cv" data-pause style="background:var(--cx-bg);padding:0 24px 100px;transition:background .5s ease;contain-intrinsic-size:auto 600px">
+      <div data-reveal style="max-width:76rem;margin-inline:auto;position:relative;overflow:hidden;border-radius:28px;background:var(--cx-cta-bg);color:var(--cx-cta-ink);border:1px solid var(--cx-cta-border);padding:72px 44px;transition:background .5s ease,color .5s ease">
+        <div style="position:absolute;inset:0;background-image:linear-gradient(var(--cx-cta-line) 1px,transparent 1px),linear-gradient(90deg,var(--cx-cta-line) 1px,transparent 1px);background-size:44px 44px;animation:cx-grid 9s linear infinite;will-change:transform;mask-image:radial-gradient(90% 90% at 50% 0%,#000,transparent 75%)"></div>
+        <div style="position:absolute;bottom:-60%;left:30%;width:40%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,var(--cx-blob-a),transparent 66%);animation:cx-drift 16s ease-in-out infinite;will-change:transform"></div>
         <div style="position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:20px">
           <h2 data-split style="margin:0;font-size:clamp(30px,4.2vw,56px);line-height:1.02;letter-spacing:-.035em;font-weight:600;max-width:32rem;text-wrap:balance">Have something that needs building?</h2>
-          <p style="margin:0;max-width:30rem;font-size:17px;line-height:1.6;color:rgba(255,255,255,.7)">Tell us the problem and the constraints. We will come back with scope, architecture, and a timeline.</p>
+          <p style="margin:0;max-width:30rem;font-size:17px;line-height:1.6;color:var(--cx-cta-muted)">Tell us the problem and the constraints. We will come back with scope, architecture, and a timeline.</p>
           <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:6px">
-            <a href={`mailto:${site.email}`} data-magnetic class="lsl-contact-primary" style="position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:9px;padding:15px 28px;border-radius:999px;background:#fff;color:#121D31;font-weight:600;font-size:15px;white-space:nowrap">{site.email}</a>
-            <a href="#services" class="lsl-contact-secondary" style="display:inline-flex;align-items:center;gap:9px;padding:15px 28px;border-radius:999px;border:1px solid rgba(255,255,255,.24);color:#fff;font-weight:600;font-size:15px;white-space:nowrap">Browse services</a>
+            <a href={`mailto:${site.email}`} data-magnetic class="lsl-contact-primary" style="position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:9px;padding:15px 28px;border-radius:999px;background:var(--cx-cta-btn);color:var(--cx-cta-btn-ink);font-weight:600;font-size:15px;white-space:nowrap">{site.email}</a>
+            <a href="#services" class="lsl-contact-secondary" style="display:inline-flex;align-items:center;gap:9px;padding:15px 28px;border-radius:999px;border:1px solid var(--cx-cta-ghost);color:var(--cx-cta-ink);font-weight:600;font-size:15px;white-space:nowrap">Browse services</a>
           </div>
-          <p style="margin:6px 0 0;font-size:14px;line-height:1.7;color:rgba(255,255,255,.6)">
-            <a href={`tel:${site.phone.replace(/\s/g, "")}`} style="color:rgba(255,255,255,.85)">{site.phone}</a><br />
+          <p style="margin:6px 0 0;font-size:14px;line-height:1.7;color:var(--cx-cta-muted)">
+            <a href={`tel:${site.phone.replace(/\s/g, "")}`} style="color:var(--cx-cta-ink)">{site.phone}</a><br />
             {site.location}
           </p>
         </div>
       </div>
     </section>
 
-    <footer style="background:var(--cx-surface);border-top:1px solid var(--cx-border);padding:34px 24px 0;overflow:hidden;transition:background .5s ease">
+    <footer class="cv" style="background:var(--cx-surface);border-top:1px solid var(--cx-border);padding:34px 24px 0;overflow:hidden;transition:background .5s ease;contain-intrinsic-size:auto 420px">
       <div style="max-width:76rem;margin-inline:auto;display:flex;flex-wrap:wrap;align-items:center;gap:16px;justify-content:space-between">
         <div style="display:flex;align-items:center;gap:10px">
           <img class="al-logo-on-light" src="/brand/logo-horizontal-light-bg.svg" alt={site.name} style="height:30px;width:auto" />
@@ -182,7 +148,7 @@ import { site, stack, services, process, languages } from "../data/site";
           <span>© {new Date().getFullYear()} {site.name}</span>
         </div>
       </div>
-      <div aria-hidden="true" style="max-width:76rem;margin:28px auto 0;overflow:hidden">
+      <div aria-hidden="true" style="max-width:76rem;margin:28px auto 0;overflow:hidden;container-type:inline-size">
         <div data-wordmark class="lsl-wordmark">{site.name}</div>
       </div>
     </footer>
@@ -191,8 +157,12 @@ import { site, stack, services, process, languages } from "../data/site";
 
   <script>
     import { initSiteMotion } from "../scripts/site-motion";
+    import { initScenes } from "../scripts/scenes";
+    import { initProof } from "../scripts/proof";
 
     initSiteMotion();
+    initScenes();
+    initProof();
     const root = document.querySelector<HTMLElement>(".lsl-landing");
 
     if (root) {
@@ -223,17 +193,6 @@ import { site, stack, services, process, languages } from "../data/site";
         });
       }
 
-      root.querySelectorAll<HTMLElement>("[data-tilt]").forEach((card) => {
-        card.addEventListener("mousemove", (ev) => {
-          const r = card.getBoundingClientRect();
-          const dx = (ev.clientX - r.left) / r.width - 0.5;
-          const dy = (ev.clientY - r.top) / r.height - 0.5;
-          card.style.transform = `perspective(900px) rotateY(${dx * 5}deg) rotateX(${-dy * 5}deg) translateY(-3px)`;
-        });
-        card.addEventListener("mouseleave", () => {
-          card.style.transform = "";
-        });
-      });
     }
 
     const toggle = document.getElementById("theme-toggle");
@@ -265,18 +224,40 @@ import { site, stack, services, process, languages } from "../data/site";
       --cx-ink: #121D31;
       --cx-muted: #566178;
       --cx-faint: #8d97aa;
-      --cx-hero: #121D31;
+      --cx-hero: #f1f6f4;
+      --cx-hero-ink: #121D31;
+      --cx-hero-muted: #566178;
+      --cx-hero-line: rgba(18, 29, 49, 0.06);
+      --cx-hero-line2: rgba(18, 29, 49, 0.08);
+      --cx-hero-grad: linear-gradient(94deg, #121D31 10%, #23816f 55%, #c99c57 95%);
+      --cx-hero-caret: #c99c57;
+      --cx-hero-chip-ink: #1d7167;
+      --cx-hero-chip-bg: rgba(35, 129, 111, 0.1);
+      --cx-hero-chip-line: rgba(35, 129, 111, 0.28);
+      --cx-hero-ghost-line: rgba(18, 29, 49, 0.2);
+      --cx-hero-ghost-hover: rgba(18, 29, 49, 0.05);
+      --cx-marquee-ink: rgba(18, 29, 49, 0.45);
+      --cx-cta-bg: linear-gradient(140deg, #e8f3ee 0%, #f6f3eb 100%);
+      --cx-cta-border: rgba(18, 29, 49, 0.06);
+      --cx-cta-ink: #121D31;
+      --cx-cta-muted: #566178;
+      --cx-cta-line: rgba(18, 29, 49, 0.05);
+      --cx-cta-btn: #121D31;
+      --cx-cta-btn-ink: #ffffff;
+      --cx-cta-btn-hover: #23816f;
+      --cx-cta-ghost: rgba(18, 29, 49, 0.2);
+      --cx-cta-ghost-hover: rgba(18, 29, 49, 0.05);
       --cx-shadow: rgba(18, 29, 49, 0.28);
       --cx-accent-soft: #e6f4ef;
-      --cx-navbg: rgba(18, 29, 49, 0.78);
-      --cx-navline: rgba(255, 255, 255, 0.1);
-      --cx-navink: #ffffff;
-      --cx-navmuted: rgba(255, 255, 255, 0.66);
-      --cx-navchip: rgba(255, 255, 255, 0.07);
-      --cx-navchip-hover: rgba(255, 255, 255, 0.16);
-      --cx-navcta: #ffffff;
-      --cx-navcta-ink: #121D31;
-      --cx-navcta-hover: #e6f4ef;
+      --cx-navbg: rgba(255, 255, 255, 0.82);
+      --cx-navline: rgba(18, 29, 49, 0.08);
+      --cx-navink: #121D31;
+      --cx-navmuted: #566178;
+      --cx-navchip: rgba(18, 29, 49, 0.04);
+      --cx-navchip-hover: rgba(18, 29, 49, 0.09);
+      --cx-navcta: #121D31;
+      --cx-navcta-ink: #ffffff;
+      --cx-navcta-hover: #23816f;
       --cx-accent: #23816f;
       --cx-accent-ink: #1d7167;
       --cx-cyan: #c99c57;
@@ -295,6 +276,35 @@ import { site, stack, services, process, languages } from "../data/site";
       --cx-muted: rgba(225, 233, 245, 0.72);
       --cx-faint: rgba(225, 233, 245, 0.5);
       --cx-hero: #0a121f;
+      --cx-hero-ink: #ffffff;
+      --cx-hero-muted: rgba(255, 255, 255, 0.68);
+      --cx-hero-line: rgba(255, 255, 255, 0.055);
+      --cx-hero-line2: rgba(255, 255, 255, 0.08);
+      --cx-hero-grad: linear-gradient(94deg, #ffffff 12%, #75c291 52%, #ddb46a 92%);
+      --cx-hero-caret: #ddb46a;
+      --cx-hero-chip-ink: #75c291;
+      --cx-hero-chip-bg: rgba(79, 177, 143, 0.14);
+      --cx-hero-chip-line: rgba(117, 194, 145, 0.3);
+      --cx-hero-ghost-line: rgba(255, 255, 255, 0.22);
+      --cx-hero-ghost-hover: rgba(255, 255, 255, 0.08);
+      --cx-marquee-ink: rgba(255, 255, 255, 0.45);
+      --cx-cta-bg: #121d31;
+      --cx-cta-border: rgba(255, 255, 255, 0.06);
+      --cx-cta-ink: #ffffff;
+      --cx-cta-muted: rgba(255, 255, 255, 0.68);
+      --cx-cta-line: rgba(255, 255, 255, 0.05);
+      --cx-cta-btn: #ffffff;
+      --cx-cta-btn-ink: #121D31;
+      --cx-cta-btn-hover: #e6f4ef;
+      --cx-cta-ghost: rgba(255, 255, 255, 0.24);
+      --cx-cta-ghost-hover: rgba(255, 255, 255, 0.08);
+      --cx-navline: rgba(255, 255, 255, 0.1);
+      --cx-navink: #ffffff;
+      --cx-navchip: rgba(255, 255, 255, 0.07);
+      --cx-navchip-hover: rgba(255, 255, 255, 0.16);
+      --cx-navcta: #ffffff;
+      --cx-navcta-ink: #121D31;
+      --cx-navcta-hover: #e6f4ef;
       --cx-shadow: rgba(0, 0, 0, 0.6);
       --cx-accent-soft: rgba(79, 177, 143, 0.18);
       --cx-navbg: rgba(10, 18, 31, 0.82);
@@ -340,18 +350,48 @@ import { site, stack, services, process, languages } from "../data/site";
       filter: blur(0);
       transform: none;
     }
-    .lsl-landing::after {
-      content: "";
-      position: fixed;
+    .hero-in {
+      animation: cx-rise 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) var(--d, 0ms) both;
+    }
+    .hero-word {
+      display: inline-block;
+      animation: hero-word 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) calc(80ms + var(--i) * 70ms) both;
+    }
+    @keyframes hero-word {
+      from {
+        opacity: 0;
+        filter: blur(12px);
+        transform: translateY(0.35em);
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-in,
+      .hero-word {
+        animation: none;
+      }
+    }
+    .lsl-grain {
+      position: absolute;
       inset: 0;
-      z-index: 60;
       pointer-events: none;
-      opacity: 0.045;
-      mix-blend-mode: overlay;
+      opacity: 0.05;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     }
+    [data-pause].is-paused,
+    [data-pause].is-paused * {
+      animation-play-state: paused !important;
+    }
+    .cv {
+      content-visibility: auto;
+    }
+    thinking-orb {
+      transition: opacity 0.9s ease;
+    }
+    thinking-orb:not(:defined) {
+      opacity: 0;
+    }
     .lsl-wordmark {
-      font-size: clamp(64px, 15.5vw, 228px);
+      font-size: 17cqw;
       line-height: 0.82;
       letter-spacing: -0.06em;
       font-weight: 700;
@@ -362,7 +402,8 @@ import { site, stack, services, process, languages } from "../data/site";
       background-clip: text;
       color: transparent;
       padding-bottom: 0.06em;
-      will-change: filter, transform;
+      transform-origin: 50% 100%;
+      will-change: transform, opacity;
     }
     @media (prefers-reduced-motion: reduce) {
       [data-split] .sw-word {
@@ -398,7 +439,6 @@ import { site, stack, services, process, languages } from "../data/site";
       from {
         opacity: 0;
         transform: translateY(26px);
-        filter: blur(6px);
       }
       to {
         opacity: 1;
@@ -521,34 +561,18 @@ import { site, stack, services, process, languages } from "../data/site";
       transform: translateY(-2px);
     }
     .lsl-hero-cta-secondary:hover {
-      background: rgba(255, 255, 255, 0.08);
-      border-color: rgba(255, 255, 255, 0.45);
-    }
-    .lsl-service-card:hover {
-      box-shadow: 0 30px 60px -28px var(--cx-shadow);
-      border-color: var(--cx-border-hover);
-    }
-    .lsl-service-card:hover .lsl-card-underline {
-      transform: scaleX(1);
+      background: var(--cx-hero-ghost-hover);
     }
     .lsl-process-item:hover {
       border-color: var(--cx-accent);
     }
-    .lsl-lang-card:hover {
-      border-color: var(--cx-border-hover);
-      transform: translateY(-2px);
-    }
     .lsl-contact-primary:hover {
       transform: translateY(-2px);
-      background: #e6f4ef;
+      background: var(--cx-cta-btn-hover);
     }
     .lsl-contact-secondary:hover {
-      background: rgba(255, 255, 255, 0.08);
+      background: var(--cx-cta-ghost-hover);
     }
   </style>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 </Layout>

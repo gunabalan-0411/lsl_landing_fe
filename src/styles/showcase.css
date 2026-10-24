@@ -122,7 +122,6 @@
   font-size: 15.5px;
   line-height: 1.6;
   color: var(--cx-muted);
-  text-wrap: pretty;
 }
 .sc-tags {
   display: flex;
@@ -176,6 +175,7 @@
   height: 17rem;
   flex: none;
   container-type: size;
+  contain: strict;
   overflow: hidden;
   border-radius: 19px;
   background: var(--stage);
@@ -214,6 +214,7 @@
 .sc-art > * {
   position: absolute;
   transform-origin: 50% 50%;
+  will-change: transform, opacity;
 }
 .sc-art b {
   font-weight: 600;
@@ -237,7 +238,6 @@
   font-size: 14.5px;
   line-height: 1.55;
   color: var(--cx-muted);
-  text-wrap: pretty;
 }
 .sc-copy a {
   display: inline-block;
@@ -292,8 +292,7 @@
   padding: 8px 18px 8px 8px;
   border: 0;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.86);
-  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.96);
   box-shadow: 0 18px 40px -16px rgba(10, 20, 40, 0.45), inset 0 0 0 1px rgba(255, 255, 255, 0.9);
   color: #121d31;
   font: 600 14px/1 "General Sans", ui-sans-serif, system-ui, sans-serif;
@@ -805,21 +804,20 @@
 /* PACO film poster */
 .pf-blob {
   border-radius: 50%;
-  filter: blur(3em);
 }
 .pf-blob1 {
-  left: 38em;
-  top: -6em;
-  width: 30em;
-  height: 30em;
-  background: var(--peach);
+  left: 34em;
+  top: -10em;
+  width: 38em;
+  height: 38em;
+  background: radial-gradient(closest-side, var(--peach), transparent);
 }
 .pf-blob2 {
-  left: -8em;
-  top: 14em;
-  width: 28em;
-  height: 28em;
-  background: color-mix(in srgb, var(--acc) 22%, transparent);
+  left: -12em;
+  top: 10em;
+  width: 36em;
+  height: 36em;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--acc) 24%, transparent), transparent);
 }
 .pf-lock {
   left: 0;

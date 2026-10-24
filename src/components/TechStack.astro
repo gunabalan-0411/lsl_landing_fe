@@ -1,0 +1,46 @@
+---
+// Technology: the stack drawn as exploded 3D layers that separate as the section scrolls into view.
+// Hovering a layer row lifts its plane; otherwise the highlight cycles through the layers.
+import { techLayers } from "../data/site";
+
+const n = techLayers.length;
+---
+
+<section id="stack" class="cv" style="background:var(--cx-bg);padding:110px 24px;transition:background .5s ease;overflow:hidden;contain-intrinsic-size:auto 1000px">
+  <div style="max-width:76rem;margin-inline:auto">
+    <div class="tk-grid">
+      <div class="tk-scene" data-stack-scroll aria-hidden="true">
+        <div class="tk-floor" />
+        <div class="tk-stack">
+          {techLayers.map((l, i) => (
+            <div class="tk-plane" data-i={i} style={`--z:${n - 1 - i}`}>
+              <span class="tk-chips">{l.tech.slice(0, 4).map((t) => <i>{t}</i>)}</span>
+              <span class="tk-idx mono">L{i + 1}</span>
+              <b class="tk-name">{l.name}</b>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <div data-reveal>
+          <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--cx-accent-ink)">Technology</span>
+          <h2 data-split style="margin:12px 0 0;font-size:clamp(32px,4.2vw,56px);line-height:1.02;letter-spacing:-.04em;font-weight:600;text-wrap:balance">One stack, from the screen to the database</h2>
+          <p style="margin:16px 0 0;max-width:30rem;font-size:15.5px;line-height:1.6;color:var(--cx-muted)">We pick proven tools for each layer and wire them together ourselves, so the voice assistant, the dashboard and the data underneath behave as one product.</p>
+        </div>
+        <ol class="tk-rows">
+          {techLayers.map((l, i) => (
+            <li class="tk-row" data-reveal data-i={i}>
+              <span class="tk-ridx mono">L{i + 1}</span>
+              <div>
+                <h3>{l.name}</h3>
+                <p>{l.line}</p>
+                <ul>{l.tech.map((t) => <li>{t}</li>)}</ul>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>

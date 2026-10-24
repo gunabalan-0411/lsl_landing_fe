@@ -94,65 +94,105 @@ export type SceneFactory = (root: HTMLElement) => Scene;
 
 interface Item {
   el: HTMLElement;
-  scene: Scene;
+  make: SceneFactory;
+  scene: Scene | null;
   t: number;
   on: boolean;
+  live: boolean;
   stopped: boolean;
 }
 
+// One shared ticker for every scene on the page. It only runs while at least one scene is playing.
+const items: Item[] = [];
+const byEl = new Map<Element, Item>();
+let running = false;
+let last = 0;
+const reduced = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+function tick(now: number) {
+  const dt = Math.min(0.05, (now - last) / 1000);
+  last = now;
+  let any = false;
+  for (const it of items) {
+    if (!it.scene) continue;
+    const live = it.on && !it.stopped && !it.el.hasAttribute("data-paused");
+    if (live && !it.live) it.t = 0;
+    it.live = live;
+    if (!live) continue;
+    any = true;
+    it.t += dt;
+    const { intro, loop } = it.scene;
+    it.scene.render(it.t < intro ? it.t : intro + ((it.t - intro) % loop));
+  }
+  if (any) requestAnimationFrame(tick);
+  else running = false;
+}
+function wake() {
+  if (running || reduced()) return;
+  running = true;
+  last = performance.now();
+  requestAnimationFrame(tick);
+}
+
 /**
- * Mounts every [data-scene] element. A scene plays only while it is on screen, and replays its
- * intro each time it comes back into view (the cards "grow" again, as in the reference).
+ * Mounts the [data-scene] elements inside `root`. Each scene is built only when it nears the viewport,
+ * plays only while it is on screen and not marked [data-paused], and replays its intro each time it
+ * comes back (the cards "grow" again, as in the reference).
  */
-export function runScenes(factories: Record<string, SceneFactory>) {
-  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const items: Item[] = [];
-  document.querySelectorAll<HTMLElement>("[data-scene]").forEach((el) => {
+export function mountScenes(root: ParentNode, factories: Record<string, SceneFactory>) {
+  const reduce = reduced();
+  const mine: Item[] = [];
+  root.querySelectorAll<HTMLElement>("[data-scene]").forEach((el) => {
     const make = factories[el.dataset.scene || ""];
-    if (!make) return;
-    const scene = make(el);
-    items.push({ el, scene, t: 0, on: false, stopped: false });
-    scene.render(reduce ? scene.poster : 0);
+    if (!make || byEl.has(el)) return;
+    const it: Item = { el, make, scene: null, t: 0, on: false, live: false, stopped: false };
+    items.push(it);
+    mine.push(it);
+    byEl.set(el, it);
   });
 
-  const api = {
+  const build = (it: Item) => {
+    if (it.scene) return;
+    it.scene = it.make(it.el);
+    it.scene.render(reduce ? it.scene.poster : 0);
+  };
+  const near = new IntersectionObserver(
+    (entries) =>
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        const it = byEl.get(e.target);
+        if (it) build(it);
+        near.unobserve(e.target);
+      }),
+    { rootMargin: "60% 0px" },
+  );
+  const vis = new IntersectionObserver(
+    (entries) => {
+      for (const e of entries) {
+        const it = byEl.get(e.target);
+        if (!it) continue;
+        if (e.isIntersecting) build(it);
+        it.on = e.isIntersecting;
+      }
+      wake();
+    },
+    { threshold: 0.35 },
+  );
+  // Un-pausing a scene (the sticky services stage does this) must restart the ticker.
+  const flips = new MutationObserver(wake);
+  mine.forEach((it) => {
+    near.observe(it.el);
+    if (!reduce) {
+      vis.observe(it.el);
+      flips.observe(it.el, { attributes: true, attributeFilter: ["data-paused"] });
+    }
+  });
+
+  return {
     /** Freeze a scene (e.g. when its card starts playing a video). */
     stop(el: HTMLElement) {
-      const it = items.find((i) => i.el === el);
+      const it = byEl.get(el);
       if (it) it.stopped = true;
     },
   };
-  if (reduce || !items.length) return api;
-
-  const io = new IntersectionObserver(
-    (entries) => {
-      for (const e of entries) {
-        const it = items.find((i) => i.el === e.target);
-        if (!it) continue;
-        if (e.isIntersecting && !it.on) {
-          it.on = true;
-          it.t = 0;
-        } else if (!e.isIntersecting) {
-          it.on = false;
-        }
-      }
-    },
-    { threshold: 0.2 },
-  );
-  items.forEach((i) => io.observe(i.el));
-
-  let last = performance.now();
-  const frame = (now: number) => {
-    const dt = Math.min(0.05, (now - last) / 1000);
-    last = now;
-    for (const it of items) {
-      if (!it.on || it.stopped) continue;
-      it.t += dt;
-      const { intro, loop } = it.scene;
-      it.scene.render(it.t < intro ? it.t : intro + ((it.t - intro) % loop));
-    }
-    requestAnimationFrame(frame);
-  };
-  requestAnimationFrame(frame);
-  return api;
 }

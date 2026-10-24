@@ -37,8 +37,8 @@ const THEME_SCRIPT_HASH = "sha256-wjwVD5vFEp4zFjvm0GODZ599AkZs2RE1QBisbEBmv6w=";
 const CSP = [
   "default-src 'self'",
   `script-src 'self' '${THEME_SCRIPT_HASH}'`,
-  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://api.fontshare.com",
-  "font-src 'self' https://fonts.gstatic.com https://cdn.fontshare.com",
+  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+  "font-src 'self' https://fonts.gstatic.com",
   "img-src 'self' data:",
   "connect-src 'self'",
   "frame-src https://www.youtube-nocookie.com",
