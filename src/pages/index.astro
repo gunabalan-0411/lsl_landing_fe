@@ -64,6 +64,9 @@ import "../styles/sections.css";
               </a>
               <a href="#work" data-magnetic class="lsl-hero-cta-secondary" style="display:inline-flex;align-items:center;gap:9px;padding:14px 26px;border-radius:999px;border:1px solid var(--cx-hero-ghost-line);color:var(--cx-hero-ink);font-weight:600;font-size:14.5px;white-space:nowrap">See the work →</a>
             </div>
+            <a class="hero-in lsl-parent" style="--d:700ms" href={site.parent.url} target="_blank" rel="noopener">
+              <span class="lsl-parent-dot"></span>A branch of <b>{site.parent.name}</b><span class="lsl-parent-sep">·</span>{site.parent.tagline} ↗
+            </a>
           </div>
 
           <div class="hero-in" style="--d:300ms;position:relative;aspect-ratio:1;display:grid;place-items:center">
@@ -145,7 +148,7 @@ import "../styles/sections.css";
         </div>
         <div style="display:flex;gap:20px;font-size:13.5px;color:var(--cx-muted)">
           <a href={`mailto:${site.email}`} style="color:var(--cx-accent-ink)">{site.email}</a>
-          <span>© {new Date().getFullYear()} {site.name}</span>
+          <span>© {new Date().getFullYear()} {site.name} · A branch of <a href={site.parent.url} target="_blank" rel="noopener" style="color:var(--cx-ink);font-weight:600">{site.parent.name}</a></span>
         </div>
       </div>
       <div aria-hidden="true" style="max-width:76rem;margin:28px auto 0;overflow:hidden;container-type:inline-size">
@@ -369,6 +372,33 @@ import "../styles/sections.css";
       .hero-word {
         animation: none;
       }
+    }
+    .lsl-parent {
+      display: inline-flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 26px;
+      font-size: 13.5px;
+      color: var(--cx-hero-muted);
+    }
+    .lsl-parent b {
+      font-weight: 600;
+      color: var(--cx-hero-ink);
+    }
+    .lsl-parent-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--cx-hero-caret);
+      margin-right: 2px;
+    }
+    .lsl-parent-sep {
+      opacity: 0.5;
+    }
+    .lsl-parent:hover b {
+      text-decoration: underline;
+      text-underline-offset: 3px;
     }
     .lsl-grain {
       position: absolute;

@@ -7,6 +7,11 @@ export const site = {
   phone: "+91 88254 19713",
   website: "www.alphinistlab.com",
   location: "OMR, Sholinganallur, Chennai, Tamil Nadu",
+  parent: {
+    name: "Zithtech",
+    url: "https://www.zithtech.com/",
+    tagline: "Your transparent software partner",
+  },
 };
 
 export const stack = [
@@ -22,19 +27,6 @@ export const stack = [
 ];
 
 export const services = [
-  {
-    slug: "web-development",
-    title: "Web Development",
-    summary:
-      "Fast, accessible, production-grade web apps and marketing sites built with modern frameworks.",
-    points: [
-      "Full-stack web applications",
-      "Marketing & landing pages",
-      "API design & integration",
-      "Integration with existing systems",
-      "Performance & SEO optimization",
-    ],
-  },
   {
     slug: "agentic-generative-ai",
     title: "Agentic & Generative AI",
@@ -83,6 +75,19 @@ export const services = [
       "AI agent automation",
       "Legacy record migration",
       "Scheduled reporting & alerts",
+    ],
+  },
+  {
+    slug: "web-development",
+    title: "Web Development",
+    summary:
+      "Fast, accessible, production-grade web apps and marketing sites built with modern frameworks.",
+    points: [
+      "Full-stack web applications",
+      "Marketing & landing pages",
+      "API design & integration",
+      "Integration with existing systems",
+      "Performance & SEO optimization",
     ],
   },
 ];
