@@ -1,0 +1,256 @@
+---
+// TickBook bento: five cards rebuilt from the TickBook film (sage studio, ballpoint Tamil, the app's Line items).
+// Their motion lives in src/scripts/showcase.ts, keyed by data-scene. All names and figures are sample data.
+interface Props {
+  youtubeId: string;
+}
+const { youtubeId } = Astro.props;
+
+const tick = `<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>`;
+
+// One handwritten ledger line per entry, and the row each becomes in the app.
+const lines = [
+  { hand: "முத்து", amt: "500", name: "Muthu", id: "#31", type: "edi", typeL: "Installment", mode: "csh", modeL: "CSH", money: "₹500" },
+  { hand: "செல்வராஜ்", amt: "300", name: "Selvaraj", id: "#12", type: "edi", typeL: "Installment", mode: "csh", modeL: "CSH", money: "₹300" },
+  { hand: "லட்சுமி அக்கா", amt: "200", name: "Lakshmi N", id: "#7", alias: true, type: "edi", typeL: "Installment", mode: "csh", modeL: "CSH", money: "₹200" },
+  { hand: "ரவி", g: true, amt: "500", name: "Ravi", id: "#18", type: "edi", typeL: "Installment", mode: "onl", modeL: "ONL", money: "₹500" },
+  { hand: "கல்யாணி", el: true, amt: "1500", name: "Kalyani", id: "#4", type: "iop", typeL: "Interest", mode: "csh", modeL: "CSH", money: "₹1,500" },
+];
+
+const customers = [
+  { name: "Murugan", id: "#3", left: 15.4, top: 3.4 },
+  { name: "Selvi K", id: "#11", left: 25.4, top: 3.4 },
+  { name: "Kannan R", id: "#14", left: 15.4, top: 11.9 },
+  { name: "Kannan S", id: "#27", left: 25.4, top: 11.9 },
+];
+
+const credits = [
+  { app: "GPay", who: "RAVI K", upi: "ravi••@upi", amt: "₹500", top: 3.7 },
+  { app: "PhonePe", who: "SELVI K", upi: "selvi••@upi", amt: "₹300", top: 8.25 },
+  { app: "Paytm", who: "MURUGAN S", upi: "murugan••@upi", amt: "₹1,000", top: 12.8 },
+  { app: "BHIM", who: "PRIYA R", upi: "priya••@upi", amt: "₹2,000", top: 17.35 },
+];
+const upiRows = [
+  { name: "Selvi K", id: "#11", amt: "₹300", top: 4.2 },
+  { name: "Ravi", id: "#18", amt: "₹500", top: 9.2 },
+  { name: "Priya R", id: "#22", amt: "₹2,000", top: 14.2 },
+];
+// Beam from each matched credit (right edge) to its row (left edge), in artboard em units.
+const beams = [
+  [15.5, 5.62, 18.3, 5.62, 18.3, 10.9, 21, 10.9],
+  [15.5, 10.17, 18.3, 10.17, 18.3, 5.9, 21, 5.9],
+  [15.5, 19.27, 18.3, 19.27, 18.3, 15.9, 21, 15.9],
+];
+const word = "TickBook".split("");
+---
+
+<div class="sc-grid">
+  <article class="sc-card" data-reveal>
+    <div class="sc-stage">
+      <div class="sc-art" data-scene="tb-page" aria-hidden="true">
+        <div class="tp-page">
+          <span class="tp-date">14-10 புதன்</span>
+          {lines.map((l, i) => (
+            <div class="tp-line" style={`top:${2.85 + i * 2.6}em`}>
+              <span class:list={["tp-name", { "tp-small": l.alias }]}>
+                {l.hand}
+                {l.g && <span class="tp-g">G<i class="tp-brk" style="--c:var(--sky)" /></span>}
+                {l.el && <span class="tp-el">E-L<i class="tp-brk" style="--c:var(--iop)" /></span>}
+              </span>
+              <span class="tp-amt">{l.amt}</span>
+            </div>
+          ))}
+          <div class="tp-line tp-sum" style={`top:${2.85 + 5 * 2.6}em`}><span class="tp-name">மொத்தம்</span><span class="tp-amt">3000</span></div>
+          <div class="tp-lens" />
+          <div class="tp-brk" style={`--c:#8a7f70;left:1.5em;top:${2.85 + 5 * 2.6 + 0.35}em;width:12.9em;height:2.05em`}><span>Skipped</span></div>
+        </div>
+        <div class="tp-table sc-panel">
+          <div class="tp-th">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z" /><path d="M9 12h7M9 16h7" /></svg>
+            Line items <small>5 rows</small>
+          </div>
+          <div class="tp-cols"><span>CUSTOMER</span><span>TYPE · MODE</span><span>AMOUNT</span></div>
+          {lines.map((l, i) => (
+            <div class="tp-row" style={`top:${4.15 + i * 2.95}em`}>
+              <span class="tp-tick" set:html={tick} />
+              <span class="tp-who"><b>{l.name}{l.alias && <span class="tb-pill alias">ALIAS</span>}</b><small>{l.id}</small></span>
+              <span class={`tb-pill ${l.type}`}>{l.typeL}</span>
+              <span class={`tb-pill ${l.mode}`}>{l.modeL}</span>
+              <span class="tp-amt2">{l.money}</span>
+            </div>
+          ))}
+          <div class="tp-foot"><span class="tp-ok">All customers assigned</span><b class="tp-tot mono">₹3,000</b></div>
+        </div>
+        <div class="tb-fly">Muthu ₹500</div>
+      </div>
+    </div>
+    <div class="sc-copy">
+      <h4>Reads messy Tamil handwriting</h4>
+      <p>Upload the pages you've already written. AI reads them line by line into a table you check before saving.</p>
+    </div>
+  </article>
+
+  <article class="sc-card" data-reveal>
+    <div class="sc-stage">
+      <div class="sc-art" data-scene="tb-voice" aria-hidden="true">
+        <div class="tv-phone">
+          <i class="tv-notch" />
+          <div class="tv-title">Voice Entry <small>14 Oct</small></div>
+          <div class="tv-mic-wrap">
+            <i class="tv-ring" /><i class="tv-ring" /><i class="tv-ring" />
+            <span class="tv-mic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3" /><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21" /></svg></span>
+          </div>
+          <div class="tv-eq"><i /><i /><i /><i /><i /></div>
+          <div class="tv-heard"><small>HEARD</small><span class="tv-heard-t">Murugan five hundred</span></div>
+        </div>
+        <div class="tv-head">Collections <small>ANNA NAGAR</small></div>
+        {customers.map((c) => (
+          <div class="tv-card sc-panel" style={`left:${c.left}em;top:${c.top}em`}>
+            <b>{c.name}</b><small>{c.id}</small>
+            <span class="tv-amt" />
+            <span class="tv-tags"><span class="tv-mode">CASH</span><span class="tv-paid">Paid</span></span>
+          </div>
+        ))}
+        <div class="tv-dd sc-panel">
+          <div class="is-on">Kannan R <small>#14</small></div>
+          <div>Kannan S <small>#27</small></div>
+        </div>
+        <div class="tv-upi sc-panel">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--sky)" stroke-width="2.4" stroke-linecap="round"><path d="M2 9a15 15 0 0 1 20 0M5.5 12.5a10 10 0 0 1 13 0M9 16a5 5 0 0 1 6 0" /></svg>
+          UPI <small>14-10-2026 · 3 txns</small>
+          <span class="tv-apply">⚡ Apply</span>
+        </div>
+        <i class="tv-sync" />
+        <div class="tb-fly">Murugan ₹500</div>
+      </div>
+    </div>
+    <div class="sc-copy">
+      <h4>Or just say it</h4>
+      <p>Say a name and an amount. When it isn't sure which customer you meant, you choose.</p>
+    </div>
+  </article>
+
+  <article class="sc-card" data-reveal>
+    <div class="sc-stage">
+      <div class="sc-art" data-scene="tb-upi" aria-hidden="true">
+        <svg class="tu-beams" viewBox="0 0 36 24">
+          {beams.map((b) => (
+            <path pathLength="1" data-p={b.join(" ")} d={`M${b[0]} ${b[1]}C${b[2]} ${b[3]} ${b[4]} ${b[5]} ${b[6]} ${b[7]}`} />
+          ))}
+        </svg>
+        <div class="tu-label">From your bank's email alerts</div>
+        {credits.map((c) => (
+          <div class="tu-credit sc-panel" style={`top:${c.top}em`}>
+            <i class="tu-app">{c.app}</i>
+            <div><b>{c.who}</b><small class="tu-st">{c.upi}</small></div>
+            <span class="tu-amt">{c.amt}</span>
+          </div>
+        ))}
+        <div class="tu-label is-alt">Line items · UPI</div>
+        {upiRows.map((r) => (
+          <div class="tu-row sc-panel" style={`top:${r.top}em`}>
+            <span class="tp-tick" set:html={tick} />
+            <div><b>{r.name}</b><small>{r.id}</small></div>
+            <span class="tu-chip">UPI?</span>
+            <span class="tu-amt">{r.amt}</span>
+          </div>
+        ))}
+        <i class="tu-dot" />
+        <div class="tu-sum">
+          <small>SUMMARY</small>
+          <span><b class="tu-n">3</b> of 4 UPI credits matched · <b class="tu-total">₹2,800</b></span>
+        </div>
+      </div>
+    </div>
+    <div class="sc-copy">
+      <h4>UPI, matched to your bank</h4>
+      <p>GPay marks become UPI entries, matched to the payments in your bank's email alerts.</p>
+    </div>
+  </article>
+
+  <article class="sc-card sc-tall" data-reveal>
+    <div class="sc-stage">
+      <div class="sc-art" data-scene="tb-answers" aria-hidden="true">
+        <div class="ta-sun" />
+        <div class="ta-label">NEXT MORNING</div>
+        <div class="ta-flip" style="top:4.4em">
+          <div class="ta-in">
+            <div class="ta-face ta-front"><span>Who hasn't <em>paid?</em></span></div>
+            <div class="ta-face ta-back">
+              <div class="ta-h">No payment in 7+ days <span class="ta-badge">3</span></div>
+              <div class="ta-rows">
+                <div class="ta-r"><i>RV</i><b>Revathi</b><span class="amb">8 days</span></div>
+                <div class="ta-r"><i>GN</i><b>Ganesh</b><span class="amb">11 days</span></div>
+                <div class="ta-r"><i>KS</i><b>Kannan S</b><span class="amb">9 days</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ta-flip" style="top:16em">
+          <div class="ta-in">
+            <div class="ta-face ta-front"><span>Whose <em>interest</em> is due tomorrow?</span></div>
+            <div class="ta-face ta-back">
+              <div class="ta-h">Interest due · Tomorrow <span class="ta-cal"><small>OCT</small><b>16</b></span></div>
+              <div class="ta-rows">
+                <div class="ta-r"><i>KL</i><b>Kalyani</b><span>₹1,500</span></div>
+                <div class="ta-r"><i>PR</i><b>Priya R</b><span>₹2,000</span></div>
+                <div class="ta-r"><i>MN</i><b>Mani</b><span>₹1,200</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ta-flip" style="top:27.6em">
+          <div class="ta-in">
+            <div class="ta-face ta-front"><span>What does <em>Murugan</em> still owe?</span></div>
+            <div class="ta-face ta-back">
+              <div class="ta-h">Murugan · #3 <span class="ta-badge" style="background:var(--soft);color:var(--acc)">Installment</span></div>
+              <div class="ta-owe">
+                <div>
+                  <small>OUTSTANDING</small>
+                  <div class="ta-odo">₹<span class="ta-slot"><span class="ta-strip">{[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((d) => <span>{d}</span>)}</span></span>,<span class="ta-slot"><span class="ta-strip">{[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((d) => <span>{d}</span>)}</span></span>00</div>
+                </div>
+                <span class="ta-delta">−₹500 · yesterday</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="sc-copy">
+      <h4>Answers ready next morning</h4>
+      <p>Who hasn't paid, whose interest is due tomorrow, and what each customer still owes.</p>
+    </div>
+  </article>
+
+  <article class="sc-card sc-wide sc-video" data-reveal data-video={youtubeId} data-title="TickBook film">
+    <div class="sc-stage">
+      <div class="sc-art" data-scene="tb-film" aria-hidden="true">
+        <div class="tf-glow" />
+        <div class="tf-scrap" style="left:2em;top:3em"><div><span>முருகன்</span><span>500</span></div><div><span>கண்ணன்</span><span>200</span></div><div><span>செல்வி</span><span>300</span></div><div><span>ரவி</span><span>500</span></div></div>
+        <div class="tf-chip sc-panel" style="left:51em;top:3em"><small>Murugan · today</small><b>₹500</b><span class="ok" set:html={tick} /></div>
+        <div class="tf-chip sc-panel" style="left:4.5em;top:26.6em"><small>Outstanding</small><b>₹8,500</b></div>
+        <div class="tf-chip sc-panel" style="left:47em;top:25.4em"><small>Ravi · ₹500</small><b style="color:var(--sky)">UPI matched</b></div>
+        <div class="tf-lock">
+          <svg class="tf-tile" viewBox="0 0 120 120" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="12" y="12" width="96" height="96" rx="22" fill="#3d8a66" />
+            <path class="tf-s" pathLength="1" d="M32 38 H88" stroke="#f1f5f0" stroke-width="7" opacity="0.5" />
+            <path class="tf-s" pathLength="1" d="M32 58 H88" stroke="#f1f5f0" stroke-width="7" opacity="0.5" />
+            <path class="tf-s" pathLength="1" d="M30 80 L40 90 L58 71" stroke="#f1f5f0" stroke-width="8" />
+            <path class="tf-s" pathLength="1" d="M68 81 H88" stroke="#f1f5f0" stroke-width="7" opacity="0.5" />
+          </svg>
+          <span class="tf-word">{word.map((c) => <span>{c}</span>)}</span>
+        </div>
+        <div class="tf-tag"><span>Every</span><span>collection,</span><span class="is-acc">ticked.</span></div>
+      </div>
+      <button class="sc-play" type="button" aria-label="Play the TickBook film">
+        <span class="sc-play-i"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l12.5-7.5z" /></svg></span>
+        Watch the film
+      </button>
+    </div>
+    <div class="sc-copy">
+      <h4>Watch the TickBook film</h4>
+      <p>From a notebook of handwritten collections to answers waiting the next morning.</p>
+      <a href={`https://youtu.be/${youtubeId}`} target="_blank" rel="noreferrer">Open on YouTube ↗</a>
+    </div>
+  </article>
+</div>

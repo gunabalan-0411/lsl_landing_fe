@@ -87,40 +87,25 @@ export const services = [
   },
 ];
 
-export const demos = [
+// The two products in the "Selected work" showcase. Every name and figure in their motion cards is sample data.
+export const projects = [
   {
     slug: "paco-ai",
     title: "PACO AI",
-    description: "Ask PACO AI by voice, in English or Tamil — every answer follows your role, whether you are a parent, teacher or principal.",
+    category: "Voice assistant for a school ERP",
+    summary:
+      "Parents, teachers and principals ask by voice or text, in English or Tamil, and get the answer from the school's own records. Every answer follows the person's role.",
+    tags: ["Voice & text", "English · தமிழ்", "Role-based answers", "School ERP"],
     youtubeId: "y4kyhvUHSbQ",
   },
   {
     slug: "tickbook",
     title: "TickBook",
-    description: "Type it, say it, or upload your handwritten pages. TickBook records every collection, matches UPI to your bank, and has the answers ready next morning.",
+    category: "Collections app for daily and interest-only lenders",
+    summary:
+      "Type it, say it, or upload your handwritten pages. TickBook records every collection, matches UPI to your bank, and has the answers ready next morning.",
+    tags: ["Handwritten Tamil", "Voice entry", "UPI matching", "Daily & interest loans"],
     youtubeId: "Y3fTaktrOzk",
-  },
-];
-
-// Placeholder entries — replace with real case studies as they are ready.
-export const projects = [
-  {
-    slug: "project-one",
-    title: "Project name",
-    category: "Category",
-    status: "Coming soon",
-    summary:
-      "A short description of the problem, what we built, and the result. Replace this text with the real project story.",
-    tags: ["Tech", "Stack", "Goes here"],
-  },
-  {
-    slug: "project-two",
-    title: "Project name",
-    category: "Category",
-    status: "Coming soon",
-    summary:
-      "A short description of the problem, what we built, and the result. Replace this text with the real project story.",
-    tags: ["Tech", "Stack", "Goes here"],
   },
 ];
 

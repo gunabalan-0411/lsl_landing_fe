@@ -1,0 +1,157 @@
+---
+// PACO AI bento: five cards rebuilt from the PACO AI film (blue + peach, the voice pill, role answers).
+// Their motion lives in src/scripts/showcase.ts, keyed by data-scene. All names and figures are sample data.
+interface Props {
+  youtubeId: string;
+}
+const { youtubeId } = Astro.props;
+
+const waveBars = Array.from({ length: 18 });
+const tiles = [
+  { label: "Fees", ico: "₹", c: "#fde3d3", k: "#ea580c", left: 2, top: 2.2, bars: [45, 80, 30, 62] },
+  { label: "Attendance", ico: "✓", c: "#dff1fb", k: "#0288d1", left: 14.3, top: 1, bars: [70, 52, 88, 64] },
+  { label: "Exams", ico: "A", c: "#e7e4fb", k: "#6d5bd0", left: 26.6, top: 2.4, bars: [36, 58, 74, 40] },
+  { label: "Leave", ico: "L", c: "#dcf3e7", k: "#059669", left: 2.8, top: 15.6, bars: [24, 46, 30, 52] },
+  { label: "Marks", ico: "M", c: "#fdecc8", k: "#d97706", left: 14.4, top: 16.6, bars: [64, 84, 58, 90] },
+  { label: "Reports", ico: "R", c: "#fde0e0", k: "#dc2626", left: 25.9, top: 15.4, bars: [50, 30, 66, 44] },
+];
+---
+
+<div class="sc-grid">
+  <article class="sc-card" data-reveal>
+    <div class="sc-stage">
+      <div class="sc-art" data-scene="paco-ask" aria-hidden="true">
+        {tiles.map((t) => (
+          <div class="pa-tile sc-panel" style={`left:${t.left}em;top:${t.top}em;--c:${t.c};--k:${t.k}`}>
+            <i class="pa-ico">{t.ico}</i>
+            <b>{t.label}</b>
+            <span class="pa-bars">{t.bars.map((h) => <i style={`height:${h}%`} />)}</span>
+          </div>
+        ))}
+        <div class="pa-pill">
+          <div class="pa-wave">{waveBars.map(() => <i />)}</div>
+          <div class="pa-q"><span class="pa-q-t">How much fee is pending?</span><i class="sc-caret" /></div>
+          <span class="pa-btn"><svg viewBox="0 0 24 24" fill="#fff"><rect x="5" y="9" width="2.6" height="6" rx="1.3" /><rect x="10.7" y="5" width="2.6" height="14" rx="1.3" /><rect x="16.4" y="7.5" width="2.6" height="9" rx="1.3" /></svg></span>
+        </div>
+        <div class="pa-ans sc-panel">
+          <div class="pa-kick"><i />PACO AI</div>
+          <div class="pa-amt">Rs <span class="pa-num">12,500</span></div>
+          <div class="pa-due">Due 15 Oct · Aarav</div>
+          <span class="pa-chip">✓ Diya · nothing pending</span>
+        </div>
+      </div>
+    </div>
+    <div class="sc-copy">
+      <h4>Just ask</h4>
+      <p>No more tapping through screens. Ask a plain question by voice or text and the answer comes back.</p>
+    </div>
+  </article>
+
+  <article class="sc-card" data-reveal>
+    <div class="sc-stage">
+      <div class="sc-art" data-scene="paco-roles" aria-hidden="true">
+        <svg class="pr-beams" viewBox="0 0 36 24">
+          <line class="pr-beam pr-beam-a" x1="18" y1="12" x2="18" y2="12" />
+          <line class="pr-beam pr-beam-b" x1="18" y1="12" x2="18" y2="12" />
+        </svg>
+        <div class="pr-ring" />
+        <div class="pr-ring" />
+        <div class="pr-ring pr-ping" />
+        <div class="pr-hub">
+          <svg viewBox="0 0 120 120"><rect x="10" y="10" width="100" height="58" rx="29" fill="#0288D1" /><rect x="10" y="10" width="30" height="100" rx="15" fill="#01579B" /><rect x="52" y="31" width="8" height="16" rx="4" fill="#fff" /><rect x="66" y="22" width="8" height="34" rx="4" fill="#fff" /><rect x="80" y="27" width="8" height="24" rx="4" fill="#fff" /></svg>
+        </div>
+        <div class="pr-node pr-role"><img src="/showcase/priya.webp" alt="" width="80" height="80" loading="lazy" decoding="async" /></div>
+        <div class="pr-node pr-topic" style="--k:#ea580c"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 5h10M7 9h10M9 5c4 0 5 2 5 4s-2 4-6 4l7 6" /></svg></div>
+        <div class="pr-node pr-role"><span class="pr-init" style="--c:#dc2626">K</span></div>
+        <div class="pr-node pr-topic" style="--k:#0288d1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5" /><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M16 11l2 2 4-4" /></svg></div>
+        <div class="pr-node pr-role"><img src="/showcase/senthil.webp" alt="" width="80" height="80" loading="lazy" decoding="async" /></div>
+        <div class="pr-node pr-topic" style="--k:#d97706"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z" /><path d="M9 10h6" /></svg></div>
+        <div class="pr-node pr-topic" style="--k:#6d5bd0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l4 4v14H7z" /><path d="M10 12h5M10 16h5" /></svg></div>
+        <div class="pr-badge">
+          <i />
+          <small>Signed in</small>
+          <b class="pr-name">Priya</b>
+          <span class="pr-role-l">Parent</span>
+        </div>
+      </div>
+    </div>
+    <div class="sc-copy">
+      <h4>Every answer follows your role</h4>
+      <p>A parent sees their own children, a teacher their own class, a principal the whole school.</p>
+    </div>
+  </article>
+
+  <article class="sc-card" data-reveal>
+    <div class="sc-stage">
+      <div class="sc-art" data-scene="paco-lang" aria-hidden="true">
+        <div class="pl-toggle"><i class="pl-thumb" /><span class="pl-en on">English</span><span class="pl-ta">தமிழ்</span></div>
+        <div class="pl-q">
+          <span class="pl-mini"><i /><i /><i /><i /><i /></span>
+          <span class="sw"><span class="sw-en">Who is absent in my class today?</span><span class="sw-ta">இன்னைக்கு என் கிளாஸ்ல யார் வரல?</span></span>
+        </div>
+        <div class="pl-ans sc-panel">
+          <div class="pl-head"><b class="pl-n">2</b><span class="sw"><span class="sw-en">absent today</span><span class="sw-ta">பேர் இன்று வரவில்லை</span></span></div>
+          <div class="pl-row"><i class="pl-av">AK</i><span class="sw"><span class="sw-en">Aarav Kumar</span><span class="sw-ta">ஆரவ் குமார்</span></span><i class="pl-dot" /></div>
+          <div class="pl-row"><i class="pl-av">RS</i><span class="sw"><span class="sw-en">Ravi Shankar</span><span class="sw-ta">ரவி சங்கர்</span></span><i class="pl-dot" /></div>
+        </div>
+      </div>
+    </div>
+    <div class="sc-copy">
+      <h4>In English or தமிழ்</h4>
+      <p>Ask the way you talk, by voice or text, in English or Tamil.</p>
+    </div>
+  </article>
+
+  <article class="sc-card sc-wide sc-video" data-reveal data-video={youtubeId} data-title="PACO AI film">
+    <div class="sc-stage">
+      <div class="sc-art" data-scene="paco-film" aria-hidden="true">
+        <div class="pf-blob pf-blob1" />
+        <div class="pf-blob pf-blob2" />
+        <div class="pf-chip sc-panel" style="left:3em;top:2.8em"><small>Due 15 Oct · Aarav</small><b>Rs 12,500</b></div>
+        <div class="pf-chip sc-panel" style="left:50.5em;top:2.6em"><small>Class 6B</small><b>2 absent today</b></div>
+        <div class="pf-chip sc-panel" style="left:3.5em;top:26.4em"><small>Today's rundown</small><b>41 students absent</b></div>
+        <div class="pf-chip sc-panel" style="left:49.5em;top:26em"><small>Diya</small><b>Nothing pending</b></div>
+        <div class="pf-lock">
+          <svg class="pf-mark" viewBox="0 0 120 120"><rect x="10" y="10" width="100" height="58" rx="29" fill="#0288D1" /><rect x="10" y="10" width="30" height="100" rx="15" fill="#01579B" /><rect class="bar" x="52" y="31" width="8" height="16" rx="4" fill="#fff" /><rect class="bar" x="66" y="22" width="8" height="34" rx="4" fill="#fff" /><rect class="bar" x="80" y="27" width="8" height="24" rx="4" fill="#fff" /></svg>
+          <svg class="pf-word" viewBox="140 32 183 68"><path d="M154.191 80.268V67.434H164.265Q167.554 67.434 168.877 65.916Q170.199 64.398 170.199 60.902V56.601Q170.199 53.082 168.877 51.553Q167.554 50.023 164.265 50.023H154.191V37.212H165.254Q175.88 37.212 180.733 42.065Q185.586 46.918 185.586 56.256V61.27Q185.586 70.815 180.745 75.542Q175.903 80.268 165.392 80.268ZM144.094 96V37.212H159.297V71.022L159.389 78.382V96Z M186.529 96 198.558 37.212H222.248L234.185 96H218.66L210.909 47.861H209.897L202.054 96ZM199.524 83.12V71.275H221.052V83.12Z M257.139 97.173Q246.26 97.173 241.097 91.17Q235.933 85.167 235.933 73.667V59.223Q235.933 47.907 241.2 41.973Q246.467 36.039 257.001 36.039Q259.761 36.039 262.05 36.453Q264.338 36.867 266.167 37.557Q267.995 38.247 269.329 39.098L270.341 52.553Q268.432 51.518 266.167 50.771Q263.901 50.023 260.957 50.023Q256.081 50.023 253.965 52.714Q251.849 55.405 251.849 60.189V72.862Q251.849 77.6 254.045 80.268Q256.242 82.936 261.486 82.936Q264.407 82.936 266.65 82.166Q268.892 81.395 270.755 80.337L269.72 93.999Q268.386 94.827 266.489 95.563Q264.591 96.299 262.245 96.736Q259.899 97.173 257.139 97.173Z M296.331 97.265Q284.992 97.265 279.392 91.435Q273.791 85.604 273.791 74.265V59.315Q273.791 47.976 279.415 42.008Q285.038 36.039 296.331 36.039Q307.624 36.039 313.248 42.008Q318.871 47.976 318.871 59.315V74.265Q318.871 85.604 313.27 91.435Q307.67 97.265 296.331 97.265ZM296.331 84.27Q299.85 84.27 301.414 82.039Q302.978 79.808 302.978 75.392V58.142Q302.978 53.542 301.414 51.265Q299.85 48.988 296.331 48.988Q292.812 48.988 291.248 51.265Q289.684 53.542 289.684 58.142V75.392Q289.684 79.808 291.248 82.039Q292.812 84.27 296.331 84.27Z" /></svg>
+          <span class="pf-ai"><b>AI</b></span>
+        </div>
+        <div class="pf-input">
+          <span class="pf-t"><span class="pf-tt">Ask in English or தமிழ்</span><i class="sc-caret" /></span>
+          <span class="pa-btn"><svg viewBox="0 0 24 24" fill="#fff"><rect x="5" y="9" width="2.6" height="6" rx="1.3" /><rect x="10.7" y="5" width="2.6" height="14" rx="1.3" /><rect x="16.4" y="7.5" width="2.6" height="9" rx="1.3" /></svg></span>
+        </div>
+      </div>
+      <button class="sc-play" type="button" aria-label="Play the PACO AI film">
+        <span class="sc-play-i"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l12.5-7.5z" /></svg></span>
+        Watch the film
+      </button>
+    </div>
+    <div class="sc-copy">
+      <h4>Watch the PACO AI film</h4>
+      <p>A parent, a teacher and a principal each ask one question, by voice, in English or Tamil.</p>
+      <a href={`https://youtu.be/${youtubeId}`} target="_blank" rel="noreferrer">Open on YouTube ↗</a>
+    </div>
+  </article>
+
+  <article class="sc-card sc-tall" data-reveal>
+    <div class="sc-stage">
+      <div class="sc-art" data-scene="paco-rundown" aria-hidden="true">
+        <div class="pp-who">
+          <img src="/showcase/senthil.webp" alt="" width="80" height="80" loading="lazy" decoding="async" />
+          <div><b>Senthil</b><span class="pp-chip">● Principal</span></div>
+        </div>
+        <div class="pp-q"><span class="pp-q-t">Give me today's rundown.</span><i class="sc-caret" /></div>
+        <div class="pp-ai"><i />PACO AI <span class="pl-mini">{Array.from({ length: 7 }).map(() => <i />)}</span></div>
+        <div class="pp-tile sc-panel" style="left:2.4em;top:15.2em;--c:var(--red)"><b class="pp-n" data-n="41">41</b><span>Students absent</span><i class="pp-flag" /></div>
+        <div class="pp-tile sc-panel" style="left:18.6em;top:15.2em;--c:var(--red)"><b class="pp-n" data-n="1">1</b><span>Teacher absent</span><i class="pp-flag" /></div>
+        <div class="pp-tile sc-panel" style="left:2.4em;top:25.4em;--c:var(--amber)"><b class="pp-n" data-n="5">5</b><span>Invoices overdue</span><i class="pp-flag" /></div>
+        <div class="pp-tile sc-panel" style="left:18.6em;top:25.4em;--c:var(--amber)"><b class="pp-n" data-n="4">4</b><span>Complaints open</span><i class="pp-flag" /></div>
+        <div class="pp-foot">From your school's own records</div>
+      </div>
+    </div>
+    <div class="sc-copy">
+      <h4>The whole school's day, in one answer</h4>
+      <p>A principal asks for today's rundown and sees absences, overdue invoices and open complaints at a glance.</p>
+    </div>
+  </article>
+</div>
