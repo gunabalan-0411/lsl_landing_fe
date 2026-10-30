@@ -158,39 +158,69 @@ export const techLayers = [
   },
 ];
 
-// Our own products, as opposed to client work. The speech products have no public page yet,
-// so their call to action opens an email to request access.
-export const products = [
+// What we build: our own AI models (custom-trained) and the AI products we have shipped.
+// The models have no public page yet, so their call to action opens an email to request access.
+export const models = [
   {
     slug: "speech-to-text",
     name: "Speech to Text",
-    badge: "Voice → text",
+    badge: "AI model",
     category: "Transcription for calls, voice notes and voice entry",
     line: "Turns speech into clean, accurate text that your software can search, store and act on.",
+    specs: [
+      ["Base model", "Qwen"],
+      ["Training", "Custom dataset"],
+    ],
     tags: ["Voice notes", "Call recordings", "Voice entry"],
     cta: { label: "Request access", href: `mailto:${site.email}?subject=Speech%20to%20Text%20access` },
   },
   {
     slug: "text-to-speech",
     name: "Text to Speech",
-    badge: "Text → voice",
+    badge: "AI model",
     category: "Natural voices for assistants, calls and announcements",
     line: "Turns written text into natural-sounding speech for voice assistants, phone calls, reminders and announcements.",
+    specs: [
+      ["Base model", "Qwen"],
+      ["Training", "Custom dataset"],
+    ],
     tags: ["Voice assistants", "IVR & calls", "Reminders"],
     cta: { label: "Request access", href: `mailto:${site.email}?subject=Text%20to%20Speech%20access` },
   },
+];
+
+export const aiProducts = [
   {
     slug: "tickbook",
     name: "TickBook",
-    badge: "Live",
+    badge: "AI product · Live",
+    live: true,
     category: "Collections app for daily and interest-only lenders",
     line: "Type it, say it, or upload your handwritten pages. TickBook records every collection and matches UPI to your bank.",
+    specs: [
+      ["Status", "Live"],
+      ["Owner", "Alphinist Lab"],
+    ],
     tags: ["Handwritten Tamil", "Voice entry", "UPI matching"],
     cta: { label: "Watch it work", href: "#tickbook" },
   },
+  {
+    slug: "paco-ai",
+    name: "PACO AI",
+    badge: "AI product · Built for PACO",
+    live: false,
+    category: "Voice assistant for a school ERP",
+    line: "Parents, teachers and principals ask by voice or text, in English or Tamil, and get answers from the school's own records.",
+    specs: [
+      ["Built for", "PACO"],
+      ["Languages", "English · தமிழ்"],
+    ],
+    tags: ["Voice & text", "Role-based answers", "School ERP"],
+    cta: { label: "Watch it work", href: "#paco" },
+  },
 ];
 
-// The two products in the "Selected work" showcase (TickBook is also one of our own products, above).
+// The two AI products in the "Selected work" showcase (TickBook is ours; PACO AI was built for PACO).
 // Every name and figure in their motion cards is sample data.
 export const projects = [
   {

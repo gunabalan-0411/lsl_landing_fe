@@ -24,12 +24,12 @@ const tamilFonts = `https://fonts.googleapis.com/css2?family=Anek+Tamil:wght@500
       <p style="margin:0;max-width:27rem;font-size:15.5px;line-height:1.6;color:var(--cx-muted)">Every card is a live preview of what the product does. Press play on the wide card for the full film.</p>
     </div>
 
-    <div class="sc-group sc-paco">
+    <div id="paco" class="sc-group sc-paco">
       <header class="sc-head" data-reveal>
         <div>
           <div class="sc-brand">
             <span class="sc-mark"><svg viewBox="0 0 120 120"><rect x="10" y="10" width="100" height="58" rx="29" fill="#0288D1" /><rect x="10" y="10" width="30" height="100" rx="15" fill="#01579B" /><rect x="52" y="31" width="8" height="16" rx="4" fill="#fff" /><rect x="66" y="22" width="8" height="34" rx="4" fill="#fff" /><rect x="80" y="27" width="8" height="24" rx="4" fill="#fff" /></svg></span>
-            <div><h3>{paco.title}</h3><p>{paco.category}</p></div>
+            <div><h3>{paco.title} <span class="sc-own">AI product · Built for PACO</span></h3><p>{paco.category}</p></div>
           </div>
           <ul class="sc-tags">{paco.tags.map((t) => <li>{t}</li>)}</ul>
         </div>
@@ -43,7 +43,7 @@ const tamilFonts = `https://fonts.googleapis.com/css2?family=Anek+Tamil:wght@500
         <div>
           <div class="sc-brand">
             <span class="sc-mark"><svg viewBox="0 0 120 120" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="12" y="12" width="96" height="96" rx="22" fill="#3d8a66" /><path d="M32 38 H88" stroke="#f1f5f0" stroke-width="7" opacity="0.5" /><path d="M32 58 H88" stroke="#f1f5f0" stroke-width="7" opacity="0.5" /><path d="M30 80 L40 90 L58 71" stroke="#f1f5f0" stroke-width="8" /><path d="M68 81 H88" stroke="#f1f5f0" stroke-width="7" opacity="0.5" /></svg></span>
-            <div><h3>{tickbook.title} <span class="sc-own">Our product</span></h3><p>{tickbook.category}</p></div>
+            <div><h3>{tickbook.title} <span class="sc-own">Our AI product · Live</span></h3><p>{tickbook.category}</p></div>
           </div>
           <ul class="sc-tags">{tickbook.tags.map((t) => <li>{t}</li>)}</ul>
         </div>

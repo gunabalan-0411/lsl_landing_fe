@@ -116,7 +116,7 @@
   font-size: 14px;
   color: var(--cx-muted);
 }
-/* TickBook is one of our own products, not client work */
+/* Product labels: TickBook is our own AI product; PACO AI was built for PACO */
 .sc-own {
   display: inline-block;
   vertical-align: 0.3em;
@@ -131,7 +131,8 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
-#tickbook {
+#tickbook,
+#paco {
   scroll-margin-top: 80px;
 }
 .sc-summary {
