@@ -1,0 +1,411 @@
+---
+// "Our products": the products we build and run ourselves, laid out as cards in the manner of
+// mayaresearch.ai's model list (badge, name, one line, proof, one link). Each card opens on a
+// small looping preview; every name, figure and sentence in the previews is sample data.
+import { products } from "../data/site";
+
+const bars = Array.from({ length: 14 }, (_, i) => i);
+const ttsWords = "Your appointment is confirmed for 10:30 tomorrow morning.".split(" ");
+const ledger = [
+  { name: "Murugan", amount: "₹500", via: "Cash" },
+  { name: "Selvi", amount: "₹1,200", via: "UPI" },
+  { name: "Kannan", amount: "₹800", via: "UPI" },
+];
+const tbMark = `<svg viewBox="0 0 120 120" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="12" y="12" width="96" height="96" rx="22" fill="#3d8a66"/><path d="M32 38 H88" stroke="#f1f5f0" stroke-width="7" opacity="0.5"/><path d="M32 58 H88" stroke="#f1f5f0" stroke-width="7" opacity="0.5"/><path d="M30 80 L40 90 L58 71" stroke="#f1f5f0" stroke-width="8"/><path d="M68 81 H88" stroke="#f1f5f0" stroke-width="7" opacity="0.5"/></svg>`;
+---
+
+<section id="products" class="cv" data-pause style="background:var(--cx-bg);padding:110px 24px 40px;transition:background .5s ease;contain-intrinsic-size:auto 900px">
+  <div style="max-width:76rem;margin-inline:auto">
+    <div data-reveal style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:44px">
+      <div>
+        <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--cx-accent-ink)">Our products</span>
+        <h2 data-split style="margin:12px 0 0;font-size:clamp(32px,4.4vw,60px);line-height:1;letter-spacing:-.04em;font-weight:600;max-width:15ch;text-wrap:balance">Software we build and run ourselves</h2>
+      </div>
+      <p style="margin:0;max-width:25rem;font-size:15.5px;line-height:1.6;color:var(--cx-muted)">Alongside client work, we make our own products. Use them as they are, or plug them into your systems.</p>
+    </div>
+
+    <div class="pd-grid">
+      {products.map((p) => (
+        <article class="pd-card" data-reveal>
+          <div class="pd-stage sv-dark" aria-hidden="true">
+            {p.slug === "speech-to-text" && (
+              <div class="pd-viz pd-stt">
+                <div class="pd-chip">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3" /><path d="M5 11a7 7 0 0 0 14 0M12 18v3" /></svg>
+                  <span class="pd-wave">{bars.map((i) => <i style={`--i:${i}`} />)}</span>
+                </div>
+                <div class="pd-panel">
+                  <span class="pd-label">Transcript</span>
+                  <p class="pd-type"><span>Murugan paid five hundred</span><span>rupees by UPI this morning.</span></p>
+                </div>
+              </div>
+            )}
+            {p.slug === "text-to-speech" && (
+              <div class="pd-viz pd-tts">
+                <div class="pd-panel">
+                  <span class="pd-label">Text</span>
+                  <p class="pd-read">{ttsWords.map((w, i) => <span style={`--i:${i}`}>{w}</span>)}</p>
+                </div>
+                <div class="pd-chip pd-chip-gold">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9H4z" /><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12" /></svg>
+                  <span class="pd-wave">{bars.map((i) => <i style={`--i:${i}`} />)}</span>
+                </div>
+              </div>
+            )}
+            {p.slug === "tickbook" && (
+              <div class="pd-viz pd-tb">
+                <div class="pd-panel">
+                  <div class="pd-tb-head"><span class="pd-tb-mark" set:html={tbMark} /><b>Today's collections</b></div>
+                  {ledger.map((r, i) => (
+                    <div class="pd-row" style={`--i:${i}`}>
+                      <span>{r.name}</span>
+                      <span class="pd-via">{r.via}</span>
+                      <b>{r.amount}</b>
+                      <i class="pd-tick">✓</i>
+                    </div>
+                  ))}
+                  <span class="pd-match">UPI matched to bank ✓</span>
+                </div>
+              </div>
+            )}
+          </div>
+
+          <div class="pd-body">
+            <span class:list={["pd-badge", { "is-live": p.badge === "Live" }]}>{p.badge}</span>
+            <h3>{p.name}</h3>
+            <p class="pd-cat">{p.category}</p>
+            <p class="pd-line">{p.line}</p>
+            <ul class="pd-tags">{p.tags.map((t) => <li>{t}</li>)}</ul>
+            <a class="pd-cta" href={p.cta.href} data-magnetic>{p.cta.label}<span aria-hidden="true">→</span></a>
+          </div>
+        </article>
+      ))}
+    </div>
+    <p class="pd-note">Text, names and amounts in the previews are sample data.</p>
+  </div>
+</section>
+
+<style>
+  .pd-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+  .pd-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    background: var(--cx-card);
+    border: 1px solid var(--cx-border);
+    border-radius: 26px;
+    padding: 8px;
+    box-shadow: 0 1px 2px rgba(18, 29, 49, 0.04);
+    transition:
+      box-shadow 0.4s ease,
+      border-color 0.4s ease,
+      background 0.5s ease;
+  }
+  .pd-card:hover {
+    box-shadow: 0 34px 70px -38px var(--cx-shadow);
+    border-color: var(--cx-border-hover);
+  }
+
+  /* ---------- preview stage ---------- */
+  .pd-stage {
+    position: relative;
+    height: 220px;
+    border-radius: 20px;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .pd-viz {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+    padding: 22px;
+  }
+  .pd-panel {
+    background: var(--panel);
+    border-radius: 14px;
+    padding: 12px 14px;
+    box-shadow: var(--lift);
+  }
+  .pd-label {
+    display: block;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sub);
+    margin-bottom: 6px;
+  }
+  .pd-chip {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 14px;
+    border-radius: 999px;
+    background: var(--panel);
+    box-shadow: var(--lift);
+    color: var(--acc);
+  }
+  .pd-chip-gold {
+    align-self: flex-end;
+    color: var(--gold);
+  }
+  .pd-chip svg {
+    width: 18px;
+    height: 18px;
+    flex: none;
+  }
+  .pd-wave {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    height: 22px;
+  }
+  .pd-wave i {
+    width: 3px;
+    height: 100%;
+    border-radius: 2px;
+    background: currentColor;
+    transform: scaleY(0.25);
+    animation: pd-bar 1.1s ease-in-out calc(var(--i) * -0.13s) infinite alternate;
+  }
+  .pd-wave i:nth-child(3n) {
+    animation-duration: 0.8s;
+  }
+  .pd-wave i:nth-child(4n + 1) {
+    animation-duration: 1.4s;
+  }
+  @keyframes pd-bar {
+    to {
+      transform: scaleY(1);
+    }
+  }
+
+  /* speech to text: the transcript types itself out, line by line */
+  .pd-type {
+    margin: 0;
+    font-size: 14.5px;
+    line-height: 1.45;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .pd-type span {
+    display: block;
+    width: fit-content;
+    clip-path: inset(0 100% 0 0);
+    animation: pd-typed 6s steps(26, end) infinite;
+  }
+  .pd-type span:nth-child(2) {
+    animation-name: pd-typed-2;
+  }
+  @keyframes pd-typed {
+    0% { clip-path: inset(0 100% 0 0); }
+    30%, 92% { clip-path: inset(0 0 0 0); }
+    100% { clip-path: inset(0 0 0 0); opacity: 0; }
+  }
+  @keyframes pd-typed-2 {
+    0%, 30% { clip-path: inset(0 100% 0 0); }
+    60%, 92% { clip-path: inset(0 0 0 0); }
+    100% { clip-path: inset(0 0 0 0); opacity: 0; }
+  }
+
+  /* text to speech: each word lights up as it is spoken */
+  .pd-read {
+    margin: 0;
+    font-size: 14.5px;
+    line-height: 1.5;
+    font-weight: 500;
+    color: var(--sub);
+  }
+  .pd-read span {
+    display: inline-block;
+    margin-right: 0.1em;
+    padding: 0 0.1em;
+    border-radius: 4px;
+    animation: pd-word 6s ease calc(var(--i) * 0.42s) infinite both;
+  }
+  @keyframes pd-word {
+    0% { color: var(--sub); background: transparent; }
+    3%, 7% { color: var(--ink); background: var(--soft); }
+    12%, 70% { color: var(--ink); background: transparent; }
+    80%, 100% { color: var(--sub); background: transparent; }
+  }
+
+  /* TickBook: the day's collections tick in, then UPI is matched */
+  .pd-tb-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    font-size: 13px;
+  }
+  .pd-tb-mark :global(svg) {
+    display: block;
+    width: 20px;
+    height: 20px;
+  }
+  .pd-row {
+    display: grid;
+    grid-template-columns: 1fr auto auto 18px;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 0;
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+    opacity: 0;
+    animation: pd-row 6s ease calc(var(--i) * 0.5s) infinite both;
+  }
+  .pd-via {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 10.5px;
+    color: var(--sub);
+  }
+  .pd-tick {
+    font-style: normal;
+    font-weight: 700;
+    color: var(--acc);
+  }
+  .pd-match {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: var(--soft);
+    color: var(--acc);
+    font-size: 11.5px;
+    font-weight: 600;
+    opacity: 0;
+    animation: pd-row 6s ease 1.8s infinite both;
+  }
+  @keyframes pd-row {
+    0% { opacity: 0; transform: translateY(6px); }
+    8%, 85% { opacity: 1; transform: none; }
+    100% { opacity: 0; transform: none; }
+  }
+
+  /* ---------- card text ---------- */
+  .pd-body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1;
+    padding: 22px 18px 18px;
+  }
+  .pd-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 5px 11px;
+    border-radius: 999px;
+    border: 1px solid var(--cx-border);
+    background: var(--cx-surface);
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--cx-accent-ink);
+  }
+  .pd-badge.is-live::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #4fb18f;
+    box-shadow: 0 0 10px #4fb18f;
+  }
+  .pd-body h3 {
+    margin: 16px 0 0;
+    font-size: 27px;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    font-weight: 600;
+  }
+  .pd-cat {
+    margin: 6px 0 0;
+    font-size: 14px;
+    color: var(--cx-faint);
+  }
+  .pd-line {
+    margin: 14px 0 0;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--cx-muted);
+  }
+  .pd-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    list-style: none;
+    padding: 0;
+    margin: 16px 0 22px;
+  }
+  .pd-tags li {
+    padding: 0.34rem 0.72rem;
+    border-radius: 999px;
+    border: 1px solid var(--cx-border);
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 11px;
+    color: var(--cx-muted);
+  }
+  .pd-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: auto;
+    padding: 11px 18px;
+    border-radius: 999px;
+    border: 1px solid var(--cx-hero-ghost-line);
+    color: var(--cx-ink);
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .pd-cta span {
+    transition: transform 0.25s ease;
+  }
+  .pd-cta:hover {
+    background: var(--cx-ink);
+    border-color: var(--cx-ink);
+    color: var(--cx-bg);
+  }
+  .pd-cta:hover span {
+    transform: translateX(3px);
+  }
+  .pd-note {
+    margin: 18px 0 0;
+    font-size: 12.5px;
+    color: var(--cx-faint);
+  }
+
+  @media (max-width: 1000px) {
+    .pd-grid {
+      grid-template-columns: minmax(0, 1fr);
+      max-width: 34rem;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pd-wave i,
+    .pd-type span,
+    .pd-read span,
+    .pd-row,
+    .pd-match {
+      animation: none;
+      opacity: 1;
+      clip-path: none;
+      transform: none;
+    }
+    .pd-read span {
+      color: var(--ink);
+    }
+    .pd-wave i {
+      transform: scaleY(0.6);
+    }
+  }
+</style>

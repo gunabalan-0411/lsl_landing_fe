@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Showcase from "../components/showcase/Showcase.astro";
+import Products from "../components/Products.astro";
 import Services from "../components/services/Services.astro";
 import Industries from "../components/Industries.astro";
 import TechStack from "../components/TechStack.astro";
@@ -21,6 +22,7 @@ import "../styles/sections.css";
         </a>
         <div style="flex:1"></div>
         <div style="display:flex;align-items:center;gap:22px">
+          <a href="#products" data-hide-sm class="lsl-nav-link" style="font-size:13.5px;color:var(--cx-navmuted)">Products</a>
           <a href="#services" data-hide-sm class="lsl-nav-link" style="font-size:13.5px;color:var(--cx-navmuted)">Services</a>
           <a href="#industries" data-hide-sm class="lsl-nav-link" style="font-size:13.5px;color:var(--cx-navmuted)">Industries</a>
           <a href="#work" data-hide-sm class="lsl-nav-link" style="font-size:13.5px;color:var(--cx-navmuted)">Work</a>
@@ -90,6 +92,8 @@ import "../styles/sections.css";
         ))}
       </div>
     </div>
+
+    <Products />
 
     <Services />
 

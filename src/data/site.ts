@@ -158,7 +158,40 @@ export const techLayers = [
   },
 ];
 
-// The two products in the "Selected work" showcase. Every name and figure in their motion cards is sample data.
+// Our own products, as opposed to client work. The speech products have no public page yet,
+// so their call to action opens an email to request access.
+export const products = [
+  {
+    slug: "speech-to-text",
+    name: "Speech to Text",
+    badge: "Voice → text",
+    category: "Transcription for calls, voice notes and voice entry",
+    line: "Turns speech into clean, accurate text that your software can search, store and act on.",
+    tags: ["Voice notes", "Call recordings", "Voice entry"],
+    cta: { label: "Request access", href: `mailto:${site.email}?subject=Speech%20to%20Text%20access` },
+  },
+  {
+    slug: "text-to-speech",
+    name: "Text to Speech",
+    badge: "Text → voice",
+    category: "Natural voices for assistants, calls and announcements",
+    line: "Turns written text into natural-sounding speech for voice assistants, phone calls, reminders and announcements.",
+    tags: ["Voice assistants", "IVR & calls", "Reminders"],
+    cta: { label: "Request access", href: `mailto:${site.email}?subject=Text%20to%20Speech%20access` },
+  },
+  {
+    slug: "tickbook",
+    name: "TickBook",
+    badge: "Live",
+    category: "Collections app for daily and interest-only lenders",
+    line: "Type it, say it, or upload your handwritten pages. TickBook records every collection and matches UPI to your bank.",
+    tags: ["Handwritten Tamil", "Voice entry", "UPI matching"],
+    cta: { label: "Watch it work", href: "#tickbook" },
+  },
+];
+
+// The two products in the "Selected work" showcase (TickBook is also one of our own products, above).
+// Every name and figure in their motion cards is sample data.
 export const projects = [
   {
     slug: "paco-ai",

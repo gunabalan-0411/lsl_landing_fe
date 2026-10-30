@@ -116,6 +116,24 @@
   font-size: 14px;
   color: var(--cx-muted);
 }
+/* TickBook is one of our own products, not client work */
+.sc-own {
+  display: inline-block;
+  vertical-align: 0.3em;
+  margin-left: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--cx-accent-soft);
+  color: var(--cx-accent-ink);
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+#tickbook {
+  scroll-margin-top: 80px;
+}
 .sc-summary {
   margin: 0;
   max-width: 33rem;
